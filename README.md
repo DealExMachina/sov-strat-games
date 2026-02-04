@@ -4,6 +4,12 @@
 
 This repository implements a game-theoretic framework for supplier dependency and sovereignty decisions under political risk. The core thesis: **sovereignty is not a static cost-benefit problem but a dynamic sequential game between the firm and Nature**, where Nature represents adversarial political/regulatory dynamics.
 
+## Documentation
+
+- **Main Notebook**: [`sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb`](sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb) - CFO-friendly walkthrough with executive summary
+- **Game Theory Tutorial (EN)**: [`docs/game_theory_tutorial.md`](docs/game_theory_tutorial.md) - Comprehensive guide on game theory, minimax, Bellman equations, and n-player extensions
+- **Tutoriel Théorie des Jeux (FR)**: [`docs/game_theory_tutorial_fr.md`](docs/game_theory_tutorial_fr.md) 🇫🇷 - Version française complète
+
 ## Why Games?
 
 Traditional real options frameworks (Dixit & Pindyck, 1994) treat uncertainty as exogenous random shocks. This misses the strategic dimension: political actors respond to firm actions, regulatory regimes exhibit persistence and switching dynamics, and forecast errors are not random but potentially adversarial.
@@ -134,9 +140,18 @@ For horizons $T > 20$ or state spaces $|S| > 1000$, consider approximate DP meth
 
 ## Usage
 
-See `sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb` for detailed walkthrough with CFO-friendly narrative.
+**For CFOs and Business Leaders**:
+- Start with the main notebook [`sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb`](sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb)
+- Jump to Section 9 for results and Section 11 for interpretation
+- Review Executive Summary at the end for AI-generated synthesis
 
-For quant teams: Focus on Sections 2-8 for methodology, Section 10 for sensitivity analysis.
+**For Quant Teams**:
+- Read [`docs/game_theory_tutorial.md`](docs/game_theory_tutorial.md) for theoretical foundations
+- Focus on notebook Sections 2-8 for methodology
+- Review Section 10 for sensitivity analysis
+
+**For French Speakers**:
+- Voir [`docs/game_theory_tutorial_fr.md`](docs/game_theory_tutorial_fr.md) pour guide complet 🇫🇷
 
 **Parameter Calibration**:
 1. Estimate $(p_{01}, p_{10})$ from historical tariff transition data or political risk scores
