@@ -108,18 +108,79 @@ Nature isn't malicious, but modeling political/regulatory risk as an adversarial
 2. **Captures clustering**: Bad events correlate - tariffs persist, crises deepen
 3. **Conservative but rational**: Better to over-prepare for political risk than be caught flat-footed
 
-### The Value Function: Minimax Bellman Equation
+### Richard Bellman and the Optimality Principle
 
-At each time $t$ and state $s$, we solve:
+**Richard Bellman** (1920-1984) revolutionized sequential decision problems with **dynamic programming** (1950s). His central insight: decompose a complex multi-period problem into simpler subproblems linked by a **recurrence equation**.
 
+**Bellman's Optimality Principle**: *"An optimal policy has the property that whatever the initial state and initial decision are, the remaining decisions must constitute an optimal policy with regard to the state resulting from the first decision."*
+
+In simple terms: If you're on the optimal path today, you must be on the optimal path tomorrow too. No retroactive "regret".
+
+### The Evolution of Bellman's Equation
+
+**Classic Bellman** (1950s) - Standard dynamic programming:
+$$V(s) = \min_{a} \mathbb{E}_{p_0}\left[\ell(s,a) + \gamma V(S')\right]$$
+- Minimize expected cost under nominal distribution $p_0$
+- $\gamma$ = discount factor (WACC)
+- Solution: backward induction from horizon $T$ to time 0
+
+**Bellman with CVaR** (2000s) - Risk aversion:
+$$V(s) = \min_{a} \text{CVaR}_\alpha^{p_0}\left[\ell(s,a) + \gamma V(S')\right]$$
+- Minimize tail risk (average of worst $(1-\alpha)$ outcomes) under $p_0$
+- Protects against extreme events while keeping nominal distribution
+
+**Robust Bellman** (2010s) - Our model, ambiguity aversion:
 $$V_t(s) = \min_{a \in \mathcal{A}} \max_{p \in \mathcal{P}_\varepsilon(p_0)} \text{CVaR}_\alpha^p\left[\gamma_t \ell(s,a) + V_{t+1}(S')\right]$$
+- **Min-max**: Firm minimizes, Nature maximizes
+- Nature chooses worst distribution $p$ in Wasserstein ball $\mathcal{P}_\varepsilon$
+- Protects against **model error**: what if your $p_0$ is wrong?
 
-**Translation**:
-- **Firm minimizes** by choosing action $a$
-- **Nature maximizes** by shifting next-state distribution $p$ within Wasserstein ball $\mathcal{P}_\varepsilon$
-- **CVaR** captures tail risk (worst $1-\alpha$ outcomes)
-- **$\ell(s,a)$** is stage cost (CAPEX + OPEX + tariff)
-- **$V_{t+1}$** is future cost-to-go
+### Term-by-Term Interpretation
+
+**$V_t(s)$**: Worst-case cost from state $s$ at time $t$ under optimal policy
+- "If I'm here now, how much will I spend at worst (robust, tail-risk) until the end?"
+
+**$\min_{a \in \mathcal{A}}$**: Firm chooses among actions {wait, invest, hedge, accelerate, exit}
+- Optimization over control, not just evaluation
+
+**$\max_{p \in \mathcal{P}_\varepsilon}$**: Nature chooses next distribution adversarially
+- Constraint $W_C(p, p_0) \leq \varepsilon$: can only deviate $\varepsilon$ from nominal in Wasserstein distance
+- If $\varepsilon = 0$: reduces to standard Bellman with CVaR
+
+**$\text{CVaR}_\alpha^p[\cdot]$**: Conditional mean of worst $(1-\alpha)$ outcomes under distribution $p$
+- Captures risk aversion (distribution tail)
+
+**$\gamma_t \ell(s,a)$**: Discounted immediate cost
+- $\ell(s,a)$ = CAPEX + OPEX + tariff depending on state and action
+- $\gamma_t = (1 + r)^{-t}$ discounts to present (WACC $r = 10\%$)
+
+**$V_{t+1}(S')$**: Future cost from next state $S'$
+- Recursion principle: future depends on already-calculated $V_{t+1}$
+- Solution by **backward induction** (from $T$ to 0)
+
+### Why It's Powerful: Backward Induction
+
+**Naively**, we could enumerate all possible paths over 10 years:
+- $|\mathcal{A}|^T = 5^{10} \approx 10$ million action sequences
+- For each sequence, simulate against all adversarial distributions
+- **Intractable** even for this small game
+
+**With Bellman**:
+1. Start at $t=T$ (end): $V_T(s) = 0$ (terminal costs)
+2. Step back to $t=T-1$: For each state, solve $V_{T-1}(s) = \min_a \max_p \ldots$ using $V_T$
+3. Continue to $t=0$
+4. **Complexity**: $O(T \cdot |S| \cdot |A| \cdot n_{LP})$ where $n_{LP}$ = Wasserstein LP solve time
+
+**Result**: Optimal policy $\pi^*(t, s)$ for **all** states, not just one path. This is **complete strategy**.
+
+### Bellman's Genius
+
+Bellman understood that the **recursive structure** of sequential problems allows:
+- Reducing exponential complexity to polynomial
+- Obtaining globally optimal policy through local optimizations
+- Guaranteeing optimality via optimal substructure principle
+
+Without Bellman, this model would be unsolvable. With Bellman, we solve 640 subproblems (64 states × 10 periods) in seconds.
 
 ### Why Minimax Works Here
 

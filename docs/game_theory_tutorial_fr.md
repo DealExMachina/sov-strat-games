@@ -108,18 +108,79 @@ La Nature n'est pas malveillante, mais modéliser le risque politique/réglement
 2. **Capture le regroupement** : Les mauvais événements se corrèlent - les tarifs persistent, les crises s'approfondissent
 3. **Conservateur mais rationnel** : Mieux vaut sur-préparer pour le risque politique que d'être pris au dépourvu
 
-### La Fonction de Valeur : Équation de Bellman Minimax
+### Richard Bellman et le Principe d'Optimalité
 
-À chaque temps $t$ et état $s$, nous résolvons :
+**Richard Bellman** (1920-1984) a révolutionné la résolution de problèmes séquentiels avec la **programmation dynamique** (1950s). Son insight central : décomposer un problème multi-périodes complexe en sous-problèmes plus simples liés par une **équation de récurrence**.
 
+**Principe d'optimalité de Bellman** : *"Une politique optimale a la propriété que, quels que soient l'état initial et la décision initiale, les décisions restantes doivent constituer une politique optimale par rapport à l'état résultant de la première décision."*
+
+En termes simples : Si vous êtes sur le chemin optimal aujourd'hui, vous devez être sur le chemin optimal demain aussi. Pas de "regret" rétroactif.
+
+### L'Évolution de l'Équation de Bellman
+
+**Bellman classique** (1950s) - Programmation dynamique standard :
+$$V(s) = \min_{a} \mathbb{E}_{p_0}\left[\ell(s,a) + \gamma V(S')\right]$$
+- Minimise coût espéré sous distribution nominale $p_0$
+- $\gamma$ = facteur d'actualisation (WACC)
+- Résolution : backward induction de horizon $T$ vers temps 0
+
+**Bellman avec CVaR** (2000s) - Aversion au risque :
+$$V(s) = \min_{a} \text{CVaR}_\alpha^{p_0}\left[\ell(s,a) + \gamma V(S')\right]$$
+- Minimise risque de queue (moyenne pires $(1-\alpha)$ résultats) sous $p_0$
+- Protège contre événements extrêmes tout en gardant distribution nominale
+
+**Bellman robuste** (2010s) - Notre modèle, aversion à l'ambiguïté :
 $$V_t(s) = \min_{a \in \mathcal{A}} \max_{p \in \mathcal{P}_\varepsilon(p_0)} \text{CVaR}_\alpha^p\left[\gamma_t \ell(s,a) + V_{t+1}(S')\right]$$
+- **Min-max** : Entreprise minimise, Nature maximise
+- Nature choisit pire distribution $p$ dans boule de Wasserstein $\mathcal{P}_\varepsilon$
+- Protège contre **erreur de modèle** : et si votre $p_0$ est faux ?
 
-**Traduction** :
-- **L'entreprise minimise** en choisissant l'action $a$
-- **La Nature maximise** en déplaçant la distribution d'état suivant $p$ dans la boule de Wasserstein $\mathcal{P}_\varepsilon$
-- **CVaR** capture le risque de queue (pires résultats $1-\alpha$)
-- **$\ell(s,a)$** est le coût par étape (CAPEX + OPEX + tarif)
-- **$V_{t+1}$** est le coût futur
+### Interprétation Terme à Terme
+
+**$V_t(s)$** : Coût pire-cas à partir d'état $s$ au temps $t$ sous politique optimale
+- "Si je suis ici maintenant, combien vais-je dépenser au pire (robuste, tail-risk) jusqu'à la fin ?"
+
+**$\min_{a \in \mathcal{A}}$** : L'entreprise choisit parmi actions {attendre, investir, couvrir, accélérer, sortir}
+- Optimisation sur contrôle, pas juste évaluation
+
+**$\max_{p \in \mathcal{P}_\varepsilon}$** : Nature choisit distribution suivante adversement
+- Contrainte $W_C(p, p_0) \leq \varepsilon$ : ne peut s'écarter que de $\varepsilon$ du nominal en distance de Wasserstein
+- Si $\varepsilon = 0$ : retombe sur Bellman avec CVaR standard
+
+**$\text{CVaR}_\alpha^p[\cdot]$** : Moyenne conditionnelle pires $(1-\alpha)$ résultats sous distribution $p$
+- Capture aversion au risque (queue distribution)
+
+**$\gamma_t \ell(s,a)$** : Coût immédiat actualisé
+- $\ell(s,a)$ = CAPEX + OPEX + tarif selon état et action
+- $\gamma_t = (1 + r)^{-t}$ actualise au présent (WACC $r = 10\%$)
+
+**$V_{t+1}(S')$** : Coût futur depuis prochain état $S'$
+- Principe de récurrence : futur dépend de $V_{t+1}$ déjà calculé
+- Résolution par **backward induction** (de $T$ vers 0)
+
+### Pourquoi C'est Puissant : Backward Induction
+
+**Naïvement**, on pourrait énumérer tous les chemins possibles sur 10 ans :
+- $|\mathcal{A}|^T = 5^{10} \approx 10$ millions de séquences d'actions
+- Pour chaque séquence, simuler contre toutes distributions adversariales
+- **Intractable** même pour ce petit jeu
+
+**Avec Bellman** :
+1. Commencer à $t=T$ (fin) : $V_T(s) = 0$ (coûts terminaux)
+2. Reculer à $t=T-1$ : Pour chaque état, résoudre $V_{T-1}(s) = \min_a \max_p \ldots$ en utilisant $V_T$
+3. Continuer jusqu'à $t=0$
+4. **Complexité** : $O(T \cdot |S| \cdot |A| \cdot n_{LP})$ où $n_{LP}$ = temps résolution LP Wasserstein
+
+**Résultat** : Politique optimale $\pi^*(t, s)$ pour **tous** états, pas juste chemin unique. C'est de la **stratégie complète**.
+
+### Le Génie de Bellman
+
+Bellman a compris que la **structure récursive** des problèmes séquentiels permet de :
+- Réduire complexité exponentielle à polynomiale
+- Obtenir politique globalement optimale par optimisations locales
+- Garantir optimalité via principe de sous-structure optimale
+
+Sans Bellman, ce modèle serait insoluble. Avec Bellman, on résout 640 sous-problèmes (64 états × 10 périodes) en quelques secondes.
 
 ### Pourquoi Minimax Fonctionne Ici
 
