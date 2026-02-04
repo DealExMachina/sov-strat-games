@@ -252,7 +252,54 @@ Which is more useful for a CFO facing real political uncertainty? **The policy**
 - **Partial migration as insurance**: Firm maintains flexibility, government loses leverage
 - **Negotiation**: Tariff policy may be outcome of Nash bargaining
 
-### Extension 3: Supply Chain Network
+### Extension 3: Geopolitical Supra-Game (The Forgotten Context)
+
+**Real scenario of the model**: A European firm suffers tariffs that the EU inflicts on a US tech supplier, in **retaliation** for US tariffs imposed on European firms. The current model treats these tariffs as exogenous (Nature), but they are actually the outcome of a **strategic game between economic powers**.
+
+**Meta-game structure**:
+- **Upper level**: EU vs. US (strategic tariff game)
+  - **Player A (US)**: Imposes tariffs $\tau_{US}$ to protect domestic industries
+  - **Player B (EU)**: Responds with retaliatory tariffs $\tau_{EU}$ to create political pressure
+  - **Objective**: Each maximizes national welfare anticipating the other's response
+  
+- **Lower level**: Firm (our model)
+  - Suffers $\tau_{EU}$ as environment
+  - Chooses migration policy $\pi$
+  - Faces adversarial Nature (uncertainty about retaliation duration/intensity)
+
+**Nested dynamics**:
+
+1. **EU-US tariff game** (Macro level):
+   - US imposes tariff → EU calculates optimal retaliation
+   - EU anticipates that: tariff too high → European firms migrate → loses credible retaliation capacity
+   - Equilibrium: Retaliatory tariffs high enough for political pressure, but not so high they destroy their own industry
+
+2. **European firm** (Micro level - our model):
+   - Observes $\tau_{EU}$ imposed on US supplier
+   - Decides migration policy under uncertainty: "Will the tariff persist?"
+   - This uncertainty reflects uncertainty about the **EU-US game**: negotiation, escalation, resolution?
+
+**Why this layer matters**:
+
+- **Tariff endogeneity**: $\tau_{EU}$ is not purely exogenous - it depends on US response, itself a function of damage to US industries
+- **Migration signaling**: Massive European firm migration can signal to EU government that retaliation is unsustainable
+- **Political leverage**: EU government can use threat of "letting firms migrate" as negotiation tool with US
+
+**Implications for the model**:
+
+If we modeled the complete game (3 players: US, EU, Firm), we would get:
+- **3-player Nash equilibrium** where no party can improve unilaterally
+- **Retaliation credibility**: EU only maintains tariff if firm migration remains partial
+- **Bargaining range**: Zone where both governments prefer negotiation to escalation
+
+**In practice**: Our 2-player model (Firm vs. Nature) is a **reduced form** of the complete game. The ambiguity $\varepsilon(t)$ on tariff transitions **implicitly captures** uncertainty about the underlying geopolitical game.
+
+For a production model, one could:
+- Link $\varepsilon(t)$ to **trade tension indicators** (twitter diplomacy, WTO statements, negotiation cycles)
+- Explicitly model $P(\text{resolution})$ as function of aggregate industry migration
+- Add "political lobbying" action where firm influences EU government position
+
+### Extension 4: Supply Chain Network
 
 **Setup**: Multi-tier supply chain with dependencies at each level
 

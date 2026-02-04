@@ -252,7 +252,54 @@ Laquelle est plus utile pour un CFO face à une réelle incertitude politique ? 
 - **Migration partielle comme assurance** : L'entreprise maintient flexibilité, le gouvernement perd levier
 - **Négociation** : La politique tarifaire peut être résultat de négociation de Nash
 
-### Extension 3 : Réseau de Chaîne d'Approvisionnement
+### Extension 3 : Jeu Géopolitique Supra (Le Contexte Oublié)
+
+**Scénario réel du modèle** : Une entreprise européenne subit des tarifs douaniers que l'UE inflige à un fournisseur tech américain, en **rétorsion** à des tarifs US imposés aux firmes européennes. Le modèle actuel traite ces tarifs comme exogènes (Nature), mais ils sont en fait le résultat d'un **jeu stratégique entre puissances économiques**.
+
+**Structure du méta-jeu** :
+- **Niveau supérieur** : UE vs. US (jeu tarifaire stratégique)
+  - **Joueur A (US)** : Impose tarifs $\tau_{US}$ pour protéger industries domestiques
+  - **Joueur B (UE)** : Répond avec tarifs de rétorsion $\tau_{EU}$ pour créer pression politique
+  - **Objectif** : Chacun maximise bien-être national anticipant réponse de l'autre
+  
+- **Niveau inférieur** : Entreprise (notre modèle)
+  - Subit $\tau_{EU}$ comme environnement
+  - Choisit politique migration $\pi$
+  - Fait face à Nature adversariale (incertitude sur durée/intensité rétorsion)
+
+**Dynamiques imbriquées** :
+
+1. **Jeu tarifaire UE-US** (Niveau macro) :
+   - US impose tarif → UE calcule rétorsion optimale
+   - UE anticipe que : tarif trop élevé → entreprises européennes migrent → perd capacité de rétorsion crédible
+   - Équilibre : Tarifs de rétorsion suffisamment élevés pour pression politique, mais pas au point de détruire leur propre industrie
+
+2. **Entreprise européenne** (Niveau micro - notre modèle) :
+   - Observe $\tau_{EU}$ imposé sur fournisseur US
+   - Décide politique migration sous incertitude : "Le tarif va-t-il persister ?"
+   - Cette incertitude reflète l'incertitude sur le **jeu UE-US** : négociation, escalade, résolution ?
+
+**Pourquoi cette couche compte** :
+
+- **Endogénéité des tarifs** : $\tau_{EU}$ n'est pas purement exogène - il dépend de réponse US, elle-même fonction de dommages industries US
+- **Signaling par migration** : Migration massive entreprises européennes peut signaler au gouvernement EU que rétorsion est insoutenable
+- **Levier politique** : Gouvernement EU peut utiliser menace de "laisser entreprises migrer" comme outil négociation avec US
+
+**Implications pour le modèle** :
+
+Si on modélisait le jeu complet (3 joueurs : US, EU, Entreprise), on obtiendrait :
+- **Équilibre de Nash à 3 joueurs** où aucune partie ne peut améliorer unilatéralement
+- **Crédibilité rétorsion** : EU ne maintient tarif que si migration entreprises reste partielle
+- **Zone de négociation** : Plage où les deux gouvernements préfèrent négocier plutôt qu'escalade
+
+**En pratique** : Notre modèle 2-joueurs (Entreprise vs. Nature) est une **forme réduite** du jeu complet. L'ambiguïté $\varepsilon(t)$ sur les transitions tarifaires **capture implicitement** l'incertitude sur le jeu géopolitique sous-jacent.
+
+Pour un modèle de production, on pourrait :
+- Lier $\varepsilon(t)$ aux **indicateurs de tensions commerciales** (twitter diplomatie, déclarations OMC, cycles négociation)
+- Modéliser explicitement probabilité $P(\text{résolution})$ comme fonction de migration agrégée industrie
+- Ajouter action "lobbying politique" où entreprise influence position gouvernement EU
+
+### Extension 4 : Réseau de Chaîne d'Approvisionnement
 
 **Configuration** : Chaîne d'approvisionnement multi-niveaux avec dépendances à chaque niveau
 
