@@ -89,34 +89,40 @@ Production extensions should:
 
 ## Related Literature
 
+### Game Theory Foundations
+- von Neumann, J., & Morgenstern, O. (1944). *Theory of Games and Economic Behavior*. Princeton University Press.
+- Nash, J. F. (1950). Equilibrium points in n-person games. *Proceedings of the National Academy of Sciences*, 36(1), 48-49. DOI: [10.1073/pnas.36.1.48](https://doi.org/10.1073/pnas.36.1.48)
+- Fudenberg, D., & Tirole, J. (1991). *Game Theory*. MIT Press.
+
+### Dynamic Programming and Bellman Equations
+- Bellman, R. (1957). *Dynamic Programming*. Princeton University Press.
+- Puterman, M. L. (2014). *Markov Decision Processes: Discrete Stochastic Dynamic Programming*. John Wiley & Sons.
+- Shapley, L. S. (1953). Stochastic games. *Proceedings of the National Academy of Sciences*, 39(10), 1095-1100. DOI: [10.1073/pnas.39.10.1095](https://doi.org/10.1073/pnas.39.10.1095)
+
 ### Real Options and Investment Under Uncertainty
 - Dixit, A. K., & Pindyck, R. S. (1994). *Investment under Uncertainty*. Princeton University Press.
 - Trigeorgis, L. (1996). *Real Options: Managerial Flexibility and Strategy in Resource Allocation*. MIT Press.
 
 ### Robust Optimization and Distributional Robustness
 - Ben-Tal, A., El Ghaoui, L., & Nemirovski, A. (2009). *Robust Optimization*. Princeton University Press.
-- Kuhn, D., Mohajerin Esfahani, P., Nguyen, V. A., & Shafieezadeh-Abadeh, S. (2019). Wasserstein distributionally robust optimization: Theory and applications in machine learning. *Operations Research*, 67(6), 1373-1416.
-- Blanchet, J., & Murthy, K. (2019). Quantifying distributional model risk via optimal transport. *Mathematics of Operations Research*, 44(2), 565-600.
+- Kuhn, D., Mohajerin Esfahani, P., Nguyen, V. A., & Shafieezadeh-Abadeh, S. (2019). Wasserstein distributionally robust optimization: Theory and applications in machine learning. *Operations Research*, 67(6), 1373-1416. DOI: [10.1287/opre.2019.1902](https://doi.org/10.1287/opre.2019.1902)
+- Blanchet, J., & Murthy, K. (2019). Quantifying distributional model risk via optimal transport. *Mathematics of Operations Research*, 44(2), 565-600. DOI: [10.1287/moor.2018.0936](https://doi.org/10.1287/moor.2018.0936)
 
 ### Risk Measures and CVaR
-- Rockafellar, R. T., & Uryasev, S. (2002). Conditional value-at-risk for general loss distributions. *Journal of Banking & Finance*, 26(7), 1443-1471.
-- Acerbi, C., & Tasche, D. (2002). On the coherence of expected shortfall. *Journal of Banking & Finance*, 26(7), 1487-1503.
+- Rockafellar, R. T., & Uryasev, S. (2002). Conditional value-at-risk for general loss distributions. *Journal of Banking & Finance*, 26(7), 1443-1471. DOI: [10.1016/S0378-4266(02)00271-6](https://doi.org/10.1016/S0378-4266(02)00271-6)
+- Acerbi, C., & Tasche, D. (2002). On the coherence of expected shortfall. *Journal of Banking & Finance*, 26(7), 1487-1503. DOI: [10.1016/S0378-4266(02)00269-8](https://doi.org/10.1016/S0378-4266(02)00269-8)
 
 ### Decision Theory Under Ambiguity
-- Gilboa, I., & Schmeidler, D. (1989). Maxmin expected utility with non-unique prior. *Journal of Mathematical Economics*, 18(2), 141-153.
+- Gilboa, I., & Schmeidler, D. (1989). Maxmin expected utility with non-unique prior. *Journal of Mathematical Economics*, 18(2), 141-153. DOI: [10.1016/0304-4068(89)90018-9](https://doi.org/10.1016/0304-4068(89)90018-9)
 - Hansen, L. P., & Sargent, T. J. (2008). *Robustness*. Princeton University Press.
-- Maccheroni, F., Marinacci, M., & Rustichini, A. (2006). Ambiguity aversion, robustness, and the variational representation of preferences. *Econometrica*, 74(6), 1447-1498.
+- Maccheroni, F., Marinacci, M., & Rustichini, A. (2006). Ambiguity aversion, robustness, and the variational representation of preferences. *Econometrica*, 74(6), 1447-1498. DOI: [10.1111/j.1468-0262.2006.00716.x](https://doi.org/10.1111/j.1468-0262.2006.00716.x)
 
 ### Policy Uncertainty and Economic Impact
-- Baker, S. R., Bloom, N., & Davis, S. J. (2016). Measuring economic policy uncertainty. *Quarterly Journal of Economics*, 131(4), 1593-1636.
-- Handley, K., & Limão, N. (2015). Trade and investment under policy uncertainty: Theory and firm evidence. *American Economic Journal: Economic Policy*, 7(4), 189-222.
-
-### Dynamic Programming and Markov Games
-- Puterman, M. L. (2014). *Markov Decision Processes: Discrete Stochastic Dynamic Programming*. John Wiley & Sons.
-- Shapley, L. S. (1953). Stochastic games. *Proceedings of the National Academy of Sciences*, 39(10), 1095-1100.
+- Baker, S. R., Bloom, N., & Davis, S. J. (2016). Measuring economic policy uncertainty. *Quarterly Journal of Economics*, 131(4), 1593-1636. DOI: [10.1093/qje/qjw024](https://doi.org/10.1093/qje/qjw024)
+- Handley, K., & Limão, N. (2015). Trade and investment under policy uncertainty: Theory and firm evidence. *American Economic Journal: Economic Policy*, 7(4), 189-222. DOI: [10.1257/pol.20140068](https://doi.org/10.1257/pol.20140068)
 
 ### Learning in Dynamic Environments
-- Arrow, K. J. (1962). The economic implications of learning by doing. *Review of Economic Studies*, 29(3), 155-173.
+- Arrow, K. J. (1962). The economic implications of learning by doing. *Review of Economic Studies*, 29(3), 155-173. DOI: [10.2307/2295952](https://doi.org/10.2307/2295952)
 
 ## Implementation Details
 
