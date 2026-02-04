@@ -199,6 +199,21 @@ Laquelle est plus utile pour un CFO face à une réelle incertitude politique ? 
 - Somme nulle (presque) : L'entreprise minimise le coût, la Nature maximise sous contrainte
 - Séquentiel : L'entreprise joue en premier chaque période, la Nature révèle l'état suivant
 
+**Clarification importante : Où est le fournisseur ?**
+
+Le **fournisseur n'est pas un joueur stratégique** dans ce modèle - il est **assimilé à Nature**. Voici pourquoi :
+
+- **Transmission mécanique** : Le fournisseur répercute les tarifs douaniers dans ses prix de façon **unilatérale et automatique**
+- **Pas de négociation** : L'entreprise cliente subit le surcoût, le fournisseur n'a pas d'objectif propre de "maximiser profit par pricing stratégique"
+- **Pass-through parfait** : Si tarif = 10, le fournisseur ajoute 10 au prix, point final
+
+Donc quand on dit "Nature contrôle le régime tarifaire", on veut dire :
+1. **Le gouvernement EU** impose le tarif sur le fournisseur US (décision politique)
+2. **Le fournisseur** répercute mécaniquement dans ses prix (pas de stratégie)
+3. **L'entreprise** subit le coût et doit décider sa réponse (migration, couverture, etc.)
+
+Dans ce cadre, "Nature" englobe à la fois la **décision politique EU** (tarif on/off) et le **fournisseur comme vecteur passif** de ce coût. C'est une simplification : on pourrait séparer "Gouvernement" et "Fournisseur", mais si le fournisseur n'a pas de marge de manœuvre stratégique, le modéliser explicitement n'ajoute rien.
+
 ### Extension 1 : Oligopole Multi-Entreprises
 
 **Configuration** : $n$ entreprises font face au même risque politique, doivent décider de stratégies de migration
@@ -228,29 +243,35 @@ Laquelle est plus utile pour un CFO face à une réelle incertitude politique ? 
 - MPE approché : Dynamiques de meilleure réponse, itération de politique
 - Réduction de dimension : Statistiques agrégées (ex : "fraction de l'industrie migrée")
 
-### Extension 2 : Gouvernement comme Joueur Stratégique
+### Extension 2 : Fournisseur comme Joueur Stratégique (Au-delà du Pass-Through)
 
-**Configuration** : Le gouvernement choisit une politique tarifaire anticipant les réponses des entreprises
+**Limitation du modèle actuel** : Nous supposons que le fournisseur répercute les tarifs mécaniquement (pass-through parfait à 100%). En réalité, le fournisseur pourrait avoir une stratégie propre.
+
+**Setup étendu** : Le fournisseur US choisit sa politique de pricing et absorption tarifaire anticipant les réactions de migration de ses clients européens
 
 **Structure du jeu** :
-- **Joueur 1 (Gouvernement)** : Choisit trajectoire tarifaire $\{\tau_t\}$ pour maximiser objectif (soutien politique, balance commerciale, emploi domestique)
-- **Joueur 2 (Entreprise)** : Choisit politique de migration $\pi$ pour minimiser coût donnée trajectoire tarifaire
-- **Nature** : Chocs exogènes (résultats électoraux, relations internationales)
+- **Joueur 1 (Fournisseur US)** : Choisit partage du tarif $\lambda \in [0,1]$ (0 = absorbe tout, 1 = répercute tout sur client)
+  - Trade-off : Répercuter maintient marge mais risque migration client
+  - Objectif : $\max$ (marge par client) $\times$ (nombre clients retenus)
+  
+- **Joueur 2 (Entreprise EU)** : Choisit politique de migration $\pi$ donnée prix fournisseur
+  - Coût effectif : $c_{\text{base}} + \lambda \cdot \tau$ (moins le fournisseur répercute, moins urgent de migrer)
+  
+- **Nature** : Toujours contrôle régime tarifaire $\tau_t$ (décision politique EU)
 
-**Concept de solution** : **Équilibre de Stackelberg**
-- Le gouvernement s'engage sur politique tarifaire (leader)
-- L'entreprise répond optimalement avec politique de migration (suiveur)
-- La Nature joue en dernier (ou simultanément)
+**Concept de solution** : **Nash simultané** ou **Stackelberg**
+- Si fournisseur peut s'engager contractuellement : Stackelberg (fournisseur annonce $\lambda$, client répond)
+- Si renégociation possible : Nash (chacun optimise simultanément)
 
-**Induction à rebours** :
-1. Résoudre problème entreprise pour toute trajectoire tarifaire : $\pi^*(\tau)$
-2. Le gouvernement choisit $\tau^*$ optimal anticipant $\pi^*(\tau)$
-3. Équilibre : $(\tau^*, \pi^*(\tau^*))$
+**Nouveaux phénomènes** :
+- **Absorption stratégique** : Fournisseur peut absorber partiellement ($\lambda < 1$) pour grands clients
+- **Extraction après lock-in** : Absorber initialement pour retenir, augmenter $\lambda$ progressivement une fois client dépendant
+- **Discrimination pricing** : $\lambda$ différent par segment client (pouvoir négociation, coûts migration)
 
-**Implications politiques** :
-- **La crédibilité compte** : Si le gouvernement ne peut s'engager (incohérence temporelle), l'entreprise s'attend à renégociation ex-post
-- **Migration partielle comme assurance** : L'entreprise maintient flexibilité, le gouvernement perd levier
-- **Négociation** : La politique tarifaire peut être résultat de négociation de Nash
+**Implications pratiques** :
+- **Négociation contrat** : Clause "tariff pass-through cap" limite $\lambda$
+- **Contrats long terme** : Engagement client obtient meilleure absorption
+- **Dual-source crédible** : Option alternatives augmente levier contre répercussion complète
 
 ### Extension 3 : Jeu Géopolitique Supra (Le Contexte Oublié)
 

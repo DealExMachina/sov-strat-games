@@ -199,6 +199,21 @@ Which is more useful for a CFO facing real political uncertainty? **The policy**
 - Zero-sum (almost): Firm minimizes cost, Nature maximizes within constraint
 - Sequential: Firm moves first each period, Nature reveals next state
 
+**Important clarification: Where is the supplier?**
+
+The **supplier is not a strategic player** in this model - it is **assimilated into Nature**. Here's why:
+
+- **Mechanical pass-through**: The supplier passes tariff costs into its prices in a **unilateral and automatic** way
+- **No negotiation**: The client firm suffers the cost increase, the supplier has no objective of "maximizing profit through strategic pricing"
+- **Perfect pass-through**: If tariff = 10, supplier adds 10 to price, period
+
+So when we say "Nature controls tariff regime", we mean:
+1. **The EU government** imposes the tariff on the US supplier (political decision)
+2. **The supplier** mechanically passes it through in prices (no strategy)
+3. **The firm** suffers the cost and must decide its response (migration, hedging, etc.)
+
+In this framework, "Nature" encompasses both the **EU political decision** (tariff on/off) and the **supplier as passive vector** of this cost. This is a simplification: we could separate "Government" and "Supplier", but if the supplier has no strategic maneuvering room, modeling it explicitly adds nothing.
+
 ### Extension 1: Multi-Firm Oligopoly
 
 **Setup**: $n$ firms face the same political risk, must decide migration strategies
@@ -228,11 +243,35 @@ Which is more useful for a CFO facing real political uncertainty? **The policy**
 - Approximate MPE: Best response dynamics, policy iteration
 - Dimension reduction: Aggregate statistics (e.g., "fraction of industry migrated")
 
-### Extension 2: Government as Strategic Player
+### Extension 2: Supplier as Strategic Player (Beyond Pass-Through)
 
-**Setup**: Government chooses tariff policy anticipating firm responses
+**Current model limitation**: We assume the supplier passes tariffs through mechanically (perfect pass-through at 100%). In reality, the supplier could have its own strategy.
+
+**Extended setup**: The US supplier chooses its pricing and tariff absorption policy anticipating European client migration reactions
 
 **Game structure**:
+- **Player 1 (US Supplier)**: Chooses tariff share $\lambda \in [0,1]$ (0 = absorbs all, 1 = passes all through to client)
+  - Trade-off: Pass-through maintains margin but risks client migration
+  - Objective: $\max$ (margin per client) $\times$ (clients retained)
+  
+- **Player 2 (EU Firm)**: Chooses migration policy $\pi$ given supplier pricing
+  - Effective cost: $c_{\text{base}} + \lambda \cdot \tau$ (less supplier passes through, less urgent to migrate)
+  
+- **Nature**: Still controls tariff regime $\tau_t$ (EU political decision)
+
+**Solution concept**: **Simultaneous Nash** or **Stackelberg**
+- If supplier can commit contractually: Stackelberg (supplier announces $\lambda$, client responds)
+- If renegotiation possible: Nash (each optimizes simultaneously)
+
+**New phenomena**:
+- **Strategic absorption**: Supplier can partially absorb ($\lambda < 1$) for large clients
+- **Post-lock-in extraction**: Absorb initially to retain, increase $\lambda$ progressively once client dependent
+- **Price discrimination**: Different $\lambda$ by client segment (bargaining power, migration costs)
+
+**Practical implications**:
+- **Contract negotiation**: "Tariff pass-through cap" clause limits $\lambda$
+- **Long-term contracts**: Client commitment obtains better absorption
+- **Credible dual-source**: Alternative options increase leverage against full pass-through
 - **Player 1 (Government)**: Chooses tariff path $\{\tau_t\}$ to maximize objective (political support, trade balance, domestic employment)
 - **Player 2 (Firm)**: Chooses migration policy $\pi$ to minimize cost given tariff path
 - **Nature**: Exogenous shocks (election outcomes, international relations)
