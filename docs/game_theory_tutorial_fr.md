@@ -350,6 +350,111 @@ Pour un modèle de production, on pourrait :
 
 ---
 
+## 5bis. La Souveraineté comme Portefeuille de Jeux Multi-Dimensionnels
+
+### Au-delà du Modèle Mono-Dimensionnel
+
+Le modèle actuel traite la souveraineté comme **un seul jeu** : dépendance fournisseur tech avec risque tarifaire. En réalité, la souveraineté d'une entreprise comporte **multiples dimensions simultanées** :
+
+**Dimension Économique** :
+- Dépendance fournisseurs critiques (matières premières, composants, services cloud)
+- Dépendance clients clés (concentration revenus)
+- Dépendance canaux distribution
+- → Jeux stratégiques : négociation pricing, menaces dual-source, hold-up bilatéral
+
+**Dimension Financière** :
+- Dépendance liquidité (lignes crédit, accès marchés capitaux)
+- Exposition devise (risque change)
+- Structure dette (covenants, refinancement)
+- → Jeux : relations bancaires, credit rating agencies, restructuration négociée
+
+**Dimension Sociale** :
+- Dépendance talents clés (risque départ, knowledge retention)
+- Relations syndicales (coûts sociaux migration/délocalisation)
+- Réputation employeur (attractivité recrutement)
+- → Jeux : négociation collective, signaling par RH, guerre talents secteur
+
+**Dimension Écologique** :
+- Dépendance ressources naturelles (eau, énergie, matériaux)
+- Contraintes réglementaires environnementales (carbone, déchets)
+- Risques transition climatique (actifs échoués, taxe carbone)
+- → Jeux : lobbying réglementaire, coalitions industrielles, compétition "green tech"
+
+**Dimension Technologique** :
+- Dépendance plateformes/ecosystèmes (OS, cloud, standards)
+- Lock-in propriétaire (formats, APIs, intégrations)
+- Obsolescence (fin-de-vie produits, migration forcée)
+- → Jeux : standardisation, open-source vs. propriétaire, switching costs stratégiques
+
+### Le Portefeuille Agrégé de Jeux
+
+**Le vrai problème** : Une entreprise fait face simultanément à $N$ jeux stratégiques sur ces dimensions. Chaque jeu a :
+- Ses propres joueurs (fournisseur cloud ≠ fournisseur matières premières)
+- Ses propres dynamiques (timing, horizon, réversibilité)
+- Ses propres coûts (CAPEX/OPEX différents)
+
+**Mais ils sont couplés** :
+- **Contrainte budget** : Migrer sur une dimension limite capital pour autres
+- **Contrainte capacité** : L'organisation ne peut gérer 10 migrations simultanées
+- **Corrélations politiques** : Si US impose tarifs tech, probable sur autres secteurs aussi
+- **Effets cascade** : Migration cloud force migration data centers, force migration compétences IT
+
+**Formulation portefeuille** :
+
+$$V_0 = \min_{\pi_1, \ldots, \pi_N} \sum_{i=1}^N w_i \cdot V_i(\pi_i) + C_{\text{interaction}}(\pi_1, \ldots, \pi_N)$$
+
+où :
+- $V_i(\pi_i)$ = coût pire-cas jeu $i$ sous politique $\pi_i$
+- $w_i$ = poids dimension (criticité, exposition)
+- $C_{\text{interaction}}$ = coûts/synergies entre migrations (budget partagé, apprentissage croisé)
+
+**Résultat** : Politique de **portefeuille** $\{\pi_1^*, \ldots, \pi_N^*\}$ et **séquencement optimal** (quelle dimension d'abord).
+
+### La Question Fondamentale : Peut-on Vraiment Connaître le Coût Total ?
+
+**Défi épistémologique** : Qu'est-ce qui prouve qu'on connaît le coût complet (économique, financier, social, écologique) de la souveraineté ?
+
+**Les coûts visibles** (notre modèle) :
+- CAPEX migration : Estimable (devis ingénierie, contrats fournisseurs alternatifs)
+- OPEX supplémentaire : Mesurable (dual-run, inefficacités temporaires)
+- Tarifs évités : Calculable (customs data)
+
+**Les coûts invisibles** (souvent omis) :
+- **Coût opportunité** : Capital et attention management bloqués sur migration plutôt que croissance/innovation
+- **Coût organisationnel** : Fatigue changement, résistance interne, turnover talents
+- **Coût stratégique** : Perte learning-by-doing avec fournisseur historique, relations détériorées
+- **Coût social** : Licenciements si migration = délocalisation, impact communautés
+- **Coût écologique** : Empreinte carbone migration (nouveaux data centers, transport, duplication infrastructure)
+- **Coût option** : Valeur flexibilité perdue (si migration = actifs spécialisés irréversibles)
+
+**Et les externalités** :
+- **Effets systémiques** : Si toute industrie migre, le fournisseur historique peut faire faillite (perte ecosystem innovation)
+- **Effets géopolitiques** : Migration massive peut déclencher guerre commerciale plus large
+- **Effets sociétaux** : Fragmentation technologique globale (splinternet, standards incompatibles)
+
+### La Réponse Honnête
+
+**On ne connaît PAS le coût total de la souveraineté.** Ce qu'on fait :
+
+1. **Modéliser la partie mesurable** : Coûts directs que CFO peut budgétiser
+2. **Sensibilité sur l'inconnu** : "Si coûts cachés sont 50% des coûts visibles, décision change-t-elle ?"
+3. **Indicateurs proxy** : Surveiller turnover, moral équipes, innovation output comme signaux coûts invisibles
+4. **Révision continue** : Apprendre des coûts réalisés, mettre à jour modèle
+
+**Philosophie** : Le modèle n'est pas "la vérité" mais un **outil de pensée structurée**. Il force à :
+- Expliciter hypothèses (quels coûts comptent ?)
+- Raisonner en stratégies adaptatives (pas décisions rigides)
+- Quantifier incertitude (ambiguïté, sensibilité)
+
+**La vraie valeur** n'est pas le chiffre $V_0 = 47.7$ mais le **processus de modélisation** qui révèle :
+- Quelles dimensions de souveraineté sont critiques ?
+- Quels déclencheurs justifient action ?
+- Où est l'incertitude la plus coûteuse ?
+
+**Citation de George Box** : "All models are wrong, but some are useful." Ce modèle est faux (incomplet par construction), mais utile s'il améliore la décision vs. intuition pure ou analyse statique NPV.
+
+---
+
 ## 6. Étapes pour Connecter au Monde Réel des Affaires
 
 ### Étape 1 : Alignement des Parties Prenantes

@@ -368,6 +368,111 @@ For a production model, one could:
 
 ---
 
+## 5bis. Sovereignty as a Portfolio of Multi-Dimensional Games
+
+### Beyond the Single-Dimension Model
+
+The current model treats sovereignty as **one game**: tech supplier dependency with tariff risk. In reality, a firm's sovereignty has **multiple simultaneous dimensions**:
+
+**Economic Dimension**:
+- Dependence on critical suppliers (raw materials, components, cloud services)
+- Dependence on key customers (revenue concentration)
+- Dependence on distribution channels
+- → Strategic games: pricing negotiation, dual-source threats, bilateral hold-up
+
+**Financial Dimension**:
+- Liquidity dependence (credit lines, capital market access)
+- Currency exposure (FX risk)
+- Debt structure (covenants, refinancing)
+- → Games: banking relationships, credit rating agencies, negotiated restructuring
+
+**Social Dimension**:
+- Dependence on key talent (departure risk, knowledge retention)
+- Union relations (social costs of migration/offshoring)
+- Employer reputation (recruitment attractiveness)
+- → Games: collective bargaining, HR signaling, sector talent wars
+
+**Ecological Dimension**:
+- Dependence on natural resources (water, energy, materials)
+- Environmental regulatory constraints (carbon, waste)
+- Climate transition risks (stranded assets, carbon tax)
+- → Games: regulatory lobbying, industry coalitions, "green tech" competition
+
+**Technological Dimension**:
+- Dependence on platforms/ecosystems (OS, cloud, standards)
+- Proprietary lock-in (formats, APIs, integrations)
+- Obsolescence (end-of-life products, forced migration)
+- → Games: standardization, open-source vs. proprietary, strategic switching costs
+
+### The Aggregated Portfolio of Games
+
+**The real problem**: A firm faces simultaneously $N$ strategic games across these dimensions. Each game has:
+- Its own players (cloud supplier ≠ raw material supplier)
+- Its own dynamics (timing, horizon, reversibility)
+- Its own costs (different CAPEX/OPEX)
+
+**But they are coupled**:
+- **Budget constraint**: Migrating on one dimension limits capital for others
+- **Capacity constraint**: Organization cannot manage 10 simultaneous migrations
+- **Political correlations**: If US imposes tech tariffs, likely on other sectors too
+- **Cascade effects**: Cloud migration forces data center migration, forces IT skills migration
+
+**Portfolio formulation**:
+
+$$V_0 = \min_{\pi_1, \ldots, \pi_N} \sum_{i=1}^N w_i \cdot V_i(\pi_i) + C_{\text{interaction}}(\pi_1, \ldots, \pi_N)$$
+
+where:
+- $V_i(\pi_i)$ = worst-case cost of game $i$ under policy $\pi_i$
+- $w_i$ = dimension weight (criticality, exposure)
+- $C_{\text{interaction}}$ = costs/synergies between migrations (shared budget, cross-learning)
+
+**Output**: **Portfolio policy** $\{\pi_1^*, \ldots, \pi_N^*\}$ and **optimal sequencing** (which dimension first).
+
+### The Fundamental Question: Can We Really Know the Total Cost?
+
+**Epistemological challenge**: What proves we know the complete cost (economic, financial, social, ecological) of sovereignty?
+
+**Visible costs** (our model):
+- Migration CAPEX: Estimable (engineering quotes, alternative supplier contracts)
+- Incremental OPEX: Measurable (dual-run, temporary inefficiencies)
+- Tariffs avoided: Calculable (customs data)
+
+**Invisible costs** (often omitted):
+- **Opportunity cost**: Capital and management attention locked on migration rather than growth/innovation
+- **Organizational cost**: Change fatigue, internal resistance, talent turnover
+- **Strategic cost**: Loss of learning-by-doing with historical supplier, deteriorated relationships
+- **Social cost**: Layoffs if migration = offshoring, community impact
+- **Ecological cost**: Carbon footprint of migration (new data centers, transport, infrastructure duplication)
+- **Option cost**: Lost flexibility value (if migration = irreversible specialized assets)
+
+**And externalities**:
+- **Systemic effects**: If entire industry migrates, historical supplier may fail (loss of innovation ecosystem)
+- **Geopolitical effects**: Massive migration can trigger broader trade war
+- **Societal effects**: Global technological fragmentation (splinternet, incompatible standards)
+
+### The Honest Answer
+
+**We do NOT know the total cost of sovereignty.** What we do:
+
+1. **Model the measurable part**: Direct costs that CFO can budget
+2. **Sensitivity on the unknown**: "If hidden costs are 50% of visible costs, does decision change?"
+3. **Proxy indicators**: Monitor turnover, team morale, innovation output as signals of invisible costs
+4. **Continuous revision**: Learn from realized costs, update model
+
+**Philosophy**: The model is not "truth" but a **structured thinking tool**. It forces:
+- Explicit assumptions (which costs count?)
+- Reasoning in adaptive strategies (not rigid decisions)
+- Quantifying uncertainty (ambiguity, sensitivity)
+
+**The real value** is not the number $V_0 = 47.7$ but the **modeling process** that reveals:
+- Which sovereignty dimensions are critical?
+- Which triggers justify action?
+- Where is uncertainty most costly?
+
+**George Box quote**: "All models are wrong, but some are useful." This model is wrong (incomplete by construction), but useful if it improves decisions vs. pure intuition or static NPV analysis.
+
+---
+
 ## 6. Steps to Connect This to Real-World Business
 
 ### Step 1: Stakeholder Alignment
