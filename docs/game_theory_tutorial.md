@@ -183,19 +183,11 @@ This is **adaptive strategy**, not a rigid plan. Much more valuable than a singl
 
 ### Example: Tariff Risk
 
-**Simulation approach** (evaluates a given policy):
-- Input: "If tariff hits, wait 2 years then hedge" (chosen heuristic)
-- Process: Simulate 10,000 paths with $P(\text{tariff year 2}) = 15\%$
-- Output: "Average cost = 42 units, P90 = 51 units, here's the distribution"
+**Simulation says**: "15% chance of tariff in year 2, here's the distribution of costs"
 
-**Game theory approach** (optimizes the policy):
-- Input: Nominal model with $\varepsilon=0.3$ ambiguity
-- Process: Solve minimax to find optimal $\pi^*(t,s)$ against adversarial Nature
-- Output: "Optimal policy = hedge immediately if tariff hits + accelerate if $m \geq 2$. Robust worst-case cost = 47.7 units."
+**Game theory says**: "If tariff happens in year 2, optimal policy is to hedge immediately, then accelerate migration in year 3. Worst-case cost is 47.7 units if Nature adversarially shifts transition probabilities by $\varepsilon=0.3$."
 
-**Key difference**: Simulation tests YOUR strategy. Game theory FINDS the best strategy under adversity.
-
-**Which is more useful?** If you don't know which policy to choose AND you don't trust your forecasts, game theory optimizes for you.
+Which is more useful for a CFO facing real political uncertainty? **The policy** - that is, the actionable decision rule ("what to do in each situation") rather than just a probability or cost distribution. Game theory gives you strategic triggers, not just risk assessment.
 
 ---
 
