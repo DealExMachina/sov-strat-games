@@ -183,11 +183,19 @@ C'est une **stratégie adaptive**, pas un plan rigide. Beaucoup plus précieux q
 
 ### Exemple : Risque Tarifaire
 
-**La simulation dit** : "15% de chance de tarif en année 2, voici la distribution des coûts"
+**Approche simulation** (évalue une politique donnée) :
+- Input : "Si tarif arrive, attendre 2 ans puis couvrir" (heuristique choisie)
+- Processus : Simuler 10,000 trajectoires avec $P(\text{tarif année 2}) = 15\%$
+- Output : "Coût moyen = 42 unités, P90 = 51 unités, voici la distribution"
 
-**La théorie des jeux dit** : "Si tarif arrive en année 2, la politique optimale est de couvrir immédiatement, puis accélérer la migration en année 3. Le coût du pire cas est 47.7 unités si la Nature déplace adversement les probabilités de transition de $\varepsilon=0.3$."
+**Approche théorie des jeux** (optimise la politique) :
+- Input : Modèle nominal avec $\varepsilon=0.3$ d'ambiguïté
+- Processus : Résoudre minimax pour trouver $\pi^*(t,s)$ optimal contre Nature adversariale
+- Output : "Politique optimale = couvrir immédiatement si tarif arrive + accélérer si $m \geq 2$. Coût pire cas robuste = 47.7 unités."
 
-Laquelle est plus utile pour un CFO face à une réelle incertitude politique ? La politique.
+**Différence clé** : Simulation teste VOTRE stratégie. Théorie des jeux TROUVE la meilleure stratégie sous adversité.
+
+**Laquelle est plus utile ?** Si vous ne savez pas quelle politique choisir ET vous ne faites pas confiance à vos prévisions, la théorie des jeux optimise pour vous.
 
 ---
 
