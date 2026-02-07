@@ -1,0 +1,172 @@
+
+\documentclass[11pt,a4paper]{article}
+
+% --- Encoding / language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+% --- Layout
+\usepackage{geometry}
+\geometry{margin=2.4cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{microtype}
+
+% --- Math / tables / graphics
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+
+% --- Links / quotes / bibliography
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black}
+\usepackage{csquotes}
+\usepackage[numbers]{natbib}
+
+% --- Headings
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.6em}{}
+
+% --- Title
+\title{\textbf{Modéliser la Souveraineté dans la Stratégie d’Entreprise}\\
+\large Livre blanc (version cabinet) — cadre quantitatif, portefeuille d’options, gouvernance}
+\author{Briefing expert (brouillon de travail)\\\small{Usage : Comité Stratégie / CFO / COO / CSO}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\vspace{-0.4cm}
+\begin{center}
+\small
+\textbf{Question client (formulation)} : \emph{« Comment pouvons-nous modéliser la souveraineté de façon crédible dans notre stratégie ? »}
+\end{center}
+
+\section*{Résumé exécutif}
+
+La « souveraineté » n’est pas un slogan de plus dans la grammaire stratégique : elle matérialise des \textbf{contraintes de dépendance} (technologiques, industrielles, réglementaires, financières) et des \textbf{asymétries de pouvoir} (pricing power, contrôle de standards, extraterritorialité, accès aux marchés et aux systèmes de paiement).
+Pour une entreprise européenne globalisée, elle se traduit par une exigence concrète : \textbf{maintenir la capacité de décider} quand les règles du jeu changent.
+
+Ce papier propose une approche praticable (et audit-able) : traiter la souveraineté comme un \textbf{problème de décision séquentielle} sous incertitude, où l’entreprise arbitre entre (i) performance, (ii) résilience, (iii) optionalité stratégique.
+Le cœur du cadre repose sur trois briques :
+\begin{enumerate}
+\item \textbf{Programmation dynamique (Bellman)} : optimiser une politique d’actions sur un horizon fini, en intégrant les coûts futurs et l’optionalité.
+\item \textbf{Risque extrême (CVaR)} : piloter explicitement les pertes « queue de distribution » (sanctions, ruptures, choc tarifaire durable).
+\item \textbf{Robustesse distributionnelle (Wasserstein DRO)} : reconnaître que la \emph{distribution} des scénarios est elle-même incertaine et changeante.
+\end{enumerate}
+
+Le résultat n’est pas une « matrice 2x2 » : c’est une \textbf{politique conditionnelle à l’état}, un \textbf{portefeuille d’options stratégiques} (Capex/Opex, délai d’exécution, coût d’exercice \(E(t)\) variable), et un \textbf{système de gouvernance} (registre des dépendances, indicateurs, seuils de déclenchement, escalades Board/Comité/Opérations).
+La méthode est compatible avec une articulation macro–micro : modèles CGE/commerce (ex. MIRAGE-e) pour scénariser les chocs \emph{macro}, et modèle décisionnel \emph{micro} pour optimiser les réponses de l’entreprise.
+
+\section{Pourquoi « souveraineté » devient un objet de stratégie}
+
+\subsection{Définition opératoire}
+Dans ce papier, la souveraineté d’une entreprise est définie comme :
+\begin{quote}
+\textbf{la capacité à préserver une liberté d’action décisionnelle} face à des acteurs externes capables d’imposer des contraintes (prix, accès, normes, juridictions), \textbf{sans dégrader de façon non maîtrisée} la compétitivité de long terme.
+\end{quote}
+
+Cette définition est volontairement \textbf{économique} (et non politique) : elle se mesure à travers des dépendances et des coûts.
+Elle oblige à expliciter les arbitrages : un gain d’efficacité peut augmenter une dépendance critique ; une mitigation réduit le risque mais a un coût (Capex/Opex, complexité, inertie).
+
+\subsection{Europe : autonomie stratégique « ouverte »}
+La grille européenne (autonomie stratégique \emph{ouverte}) vise une économie intégrée mais moins vulnérable aux dépendances critiques.
+Des prises de position politiques récentes (Draghi sur la compétitivité, Letta sur l’approfondissement du marché unique) soutiennent l’idée que les choix industriels, technologiques et financiers deviennent stratégiques pour l’Union \citep{letta2024,draghi2024}.
+
+\section{Optionalité stratégique : le concept, puis l’outil}
+
+\subsection{Ce qu’on entend par « optionalité »}
+L’optionalité stratégique est la valeur de \textbf{disposer de choix futurs} :
+\begin{itemize}
+\item \textbf{Retarder} une décision irréversible (attendre une information utile).
+\item \textbf{Accélérer} quand une fenêtre se ferme (sanction, tarif, standard).
+\item \textbf{Basculer} vers une alternative (fournisseur, techno, juridiction).
+\item \textbf{Sortir} d’un couloir de dépendance (exit industriel/contractuel).
+\end{itemize}
+Elle s’oppose à une stratégie purement « statique » : l’objectif n’est plus seulement d’optimiser une trajectoire centrale, mais de \textbf{préserver des bifurcations} dans un monde non stationnaire.
+
+\subsection{Fondements scientifiques : options réelles et décision séquentielle}
+Deux fondations se combinent :
+\begin{enumerate}
+\item \textbf{Options réelles} : les investissements sous incertitude ont une valeur de flexibilité (attente, expansion, abandon, switching). L’incertitude \emph{augmente} souvent la valeur de la flexibilité \citep{dixitpindyck1994}.
+\item \textbf{Programmation dynamique} : Bellman formalise que l’optimalité se construit par récurrence : les décisions futures optimales conditionnent la valeur des décisions présentes \citep{bellman1957}.
+\end{enumerate}
+
+\subsection{De la théorie à l’applicable : coût d’exercice \(E(t)\), Capex/Opex, et contraintes de délai}
+Pour être praticable en entreprise, l’optionalité doit être « comptable » :
+\begin{itemize}
+\item \textbf{Capex} (ex. migration industrielle, re-platforming, qualification fournisseur).
+\item \textbf{Opex récurrent} (ex. multi-sourcing, run parallèle, assurance, redondance).
+\item \textbf{Coût d’exercice \(E(t)\)} : le coût réel d’activer l’option dépend du temps (fenêtres contractuelles, disponibilité d’équipes, backlog technique), et peut être discontinu.
+\item \textbf{Contrainte de sortie à 3 ans} : une dépendance contractuelle impose une inertie ; la stratégie doit optimiser \emph{pendant} la période de verrouillage, pas seulement « après ».
+\end{itemize}
+On ne cherche pas à « éliminer » le risque : on cherche à dimensionner une \textbf{prime de souveraineté} (budget d’optionalité) au bon niveau.
+
+\section{Cadre méthodologique : jeu dynamique, risque extrême, robustesse}
+
+\subsection{Le problème : dépendance à un fournisseur sous choc tarifaire / pricing power}
+Cas fil rouge : une entreprise EU dépend d’une technologie US ; un choc (tarif +100\% et/ou hausse unilatérale) modifie structurellement les coûts.
+L’entreprise dispose de plusieurs actions (attendre, couvrir/hedge, investir dans une alternative, accélérer, sortir). La \textbf{Nature} représente le régime exogène (tarifs, politique, réglementation, marché), potentiellement adversarial (au sens « worst-case »).
+
+\subsection{Programmation dynamique (Bellman)}
+On définit un état \(s_t\) (régime, progression de sortie, flags d’investissement/couverture/exit) et une action \(a_t\).
+La fonction de valeur :
+\[
+V_t(s) = \min_{a \in \mathcal{A}(s)} \ \rho_t\Big( L(s,a,\xi_{t+1}) + \beta V_{t+1}(s') \Big),
+\]
+où \(L\) est la perte/coût, \(\beta\) un facteur d’actualisation, \(\rho_t\) un opérateur de risque (ci-dessous), et \(s'\) l’état suivant.
+
+\subsection{CVaR : piloter les scénarios de queue}
+La CVaR capture la perte moyenne au-delà d’un quantile \(\alpha\) : plutôt que « l’espérance », elle vise les \emph{mauvais} cas \citep{rockafellarryasev2000}.
+Dans les sujets de souveraineté, ce sont précisément les queues (sanctions, ruptures, escalade) qui importent.
+
+\subsection{Ambiguïté et DRO Wasserstein}
+En pratique, les probabilités de transition (ex. \(p_{01}\), \(p_{10}\) entre régimes) sont mal connues et instables.
+La DRO (distributionally robust optimization) traite l’incertitude sur la distribution elle-même, en optimisant contre un ensemble de distributions proches d’une référence, mesuré par une distance de Wasserstein \citep{esfahani-kuhn2018}.
+
+\section{Portefeuille souveraineté : multi-dépendances, multi-critères, corrélations}
+
+\subsection{De la dépendance unique au portefeuille}
+Une entreprise ne gère pas une dépendance isolée, mais un \textbf{registre} de dépendances critiques.
+Le passage au portefeuille implique : corrélations de chocs, contraintes de capacité, ordonnancement, arbitrages multi-critères \citep{roadmapDoc}.
+
+\subsection{Frontière de Pareto et décisions gouvernables}
+Le modèle doit produire des objets gouvernables : matrice action–résultats, ensemble des actions non dominées, politique recommandée + conditions de bascule (triggers).
+
+\subsection{Mean-field : quand le portefeuille devient grand}
+Quand \(N\) devient large, l’espace d’états explose.
+Une approximation « mean-field » permet de raisonner sur une distribution \(\mu\) des états \citep{mfgSurvey,bellmanWassMFG}.
+
+\section{Gouvernance : rendre la souveraineté pilotable (et audit-able)}
+
+\subsection{Du modèle au système : registre, indicateurs, seuils, escalades}
+Le cadre proposé reprend une architecture en trois couches (Board / Comité / Opérations), un calendrier de revue, et des seuils de déclenchement \citep{bellmanWassMFG,implementationRoadmap}.
+
+\subsection{Seuils et cadence (exemples)}
+Exemples : \(|\Delta \varepsilon| > 0.05\), \(|\Delta p_{01}| > 0.03\), \(|\Delta \mu| > 0.10\).
+Escalades : détérioration de \(V_0\) (Comité/Board) ou changement de politique \citep{bellmanWassMFG}.
+
+\section{Articulation macro–micro : éviter le faux débat}
+Un modèle macro (CGE/commerce) sert à scénariser (tarifs, réallocation, termes de l’échange) ; un modèle micro sert à décider sous contraintes (délai, cash, capacité).
+L’articulation optimale est hybride \citep{mirageDoc}.
+
+\section{Limites, robustesse, et bonnes pratiques}
+Ce cadre est robuste (DP + CVaR + DRO), mais n’élimine pas le model risk : calibrations conservatrices, backtests, revue quant, gouvernance de modèle (versioning, audit trail).
+
+\appendix
+\section{Annexe A — CVaR (rappel)}
+\(
+\mathrm{CVaR}_\alpha(X)=\min_{\eta}\left[\eta+\frac{1}{1-\alpha}\mathbb{E}(X-\eta)_+\right]
+\) \citep{rockafellarryasev2000}.
+
+\section{Annexe B — DRO Wasserstein (intuition)}
+On protège l’optimisation contre des distributions alternatives « proches » selon un budget \(\varepsilon(t)\).
+\(\varepsilon(t)\) est interprétable comme \textbf{prime de souveraineté} \citep{esfahani-kuhn2018}.
+
+\bibliographystyle{plainnat}
+\bibliography{refs_v5}
+\end{document}

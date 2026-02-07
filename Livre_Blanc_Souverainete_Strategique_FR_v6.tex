@@ -1,0 +1,180 @@
+
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Langue / encodage ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+% ---------- Mise en page ----------
+\usepackage{geometry}
+\geometry{margin=2.35cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{microtype}
+
+% ---------- Math / tableaux ----------
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+
+% ---------- Citations / liens ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black}
+\usepackage{csquotes}
+\usepackage[numbers]{natbib}
+
+% ---------- Titres ----------
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.6em}{}
+
+% ---------- Titre ----------
+\title{\textbf{Modéliser la souveraineté dans la stratégie d’entreprise}\\
+\large Note de position (ton cabinet) — optionalité stratégique, portefeuille, gouvernance, outils quantitatifs}
+\author{Briefing expert (brouillon de travail)\\\small{Destinataires : CSO / CFO / COO / Comité Exécutif}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\vspace{-0.3cm}
+\begin{center}
+\small
+\textbf{Question client (formulation)} : \emph{« Comment modéliser la souveraineté de façon crédible dans notre stratégie, au-delà des matrices 2x2 ? »}
+\end{center}
+
+\section*{Résumé exécutif (lecture C-level)}
+
+\textbf{Constat.} Pour une entreprise européenne globalisée, la souveraineté ne se réduit pas à une posture. Elle se matérialise par des \textbf{dépendances} (technologies critiques, fournisseurs, cloud, standards, juridictions, systèmes de paiement) et des \textbf{asymétries de pouvoir} (pricing power, contrôle des routes commerciales, extraterritorialité, sanctions, restrictions d’export).
+Ces facteurs évoluent dans le temps ; ils ne se traitent pas correctement par des scénarios statiques.
+
+\textbf{Proposition.} Nous proposons un cadre \textbf{quantitatif et gouvernable} qui transforme la souveraineté en discipline d’allocation (capex/opex) et de design opérationnel, structurée autour de l’\textbf{optionalité stratégique} :
+la capacité à préserver et activer des choix futurs (bascules technologiques, multi-sourcing, redesign contractuel, relocalisation, découplage partiel), sous contrainte de délais et d’inerties.
+
+\textbf{Briques scientifiques.} Le cadre repose sur trois outils éprouvés en décision et en gestion des risques :
+(i) \textbf{programmation dynamique} (Bellman) pour la décision séquentielle \citep{bellman1957},
+(ii) \textbf{CVaR} pour piloter les pertes de queue (événements rares à impact majeur) \citep{rockafellarryasev2000},
+(iii) \textbf{optimisation robuste distributionnelle} (Wasserstein DRO) pour se protéger contre l’erreur de modèle et l’instabilité des probabilités \citep{esfahani-kuhn2018}.
+
+\textbf{Sorties décisionnelles.} On obtient : (a) une \textbf{politique} d’actions conditionnelle à l’état (quoi faire, quand, et dans quelles conditions), (b) une estimation de la \textbf{prime de souveraineté} (budget d’optionalité), (c) des \textbf{triggers} opérationnels (seuils) qui déclenchent recalcul, accélération, ou escalade de gouvernance.
+
+\textbf{Articulation Europe / macro-finance.} Les recommandations Draghi et Letta sur la compétitivité et l’avenir du marché unique éclairent le diagnostic : réduire les dépendances critiques et financer l’investissement de long terme \citep{draghiEC,lettaReport}.
+Le cadre s’articule naturellement avec des modèles macro de commerce (CGE), dont MIRAGE (CEPII), pour scénariser les chocs, puis optimiser la réponse micro de l’entreprise \citep{mirageSite,mirageDoc2026}.
+
+\section{Pourquoi le sujet est structurel (et pas conjoncturel)}
+
+\subsection{Europe : compétitivité, marché unique, autonomie stratégique}
+Deux textes récents structurent le débat européen.
+Le rapport Letta \emph{Much More Than a Market} insiste sur l’approfondissement du marché unique et le traitement d’angles morts (énergie, capitaux, défense, innovation) \citep{lettaReport}.
+La Commission a publié une page dédiée au rapport Draghi sur l’avenir de la compétitivité européenne \citep{draghiEC}, et le texte de présentation de Draghi met l’accent sur le « nouveau paysage » pour l’Europe \citep{draghiAddress}.
+
+
+\subsection{Puissances intermédiaires et coalitions}
+Dans un monde de rivalité entre grandes puissances, la capacité des « middle powers » à constituer des coalitions à géométrie variable devient un paramètre de stabilité.
+Dans son adresse spéciale à Davos 2026, Mark Carney appelle explicitement à une coordination accrue des puissances intermédiaires face à la montée du \emph{hard power} et de l’intimidation économique \citep{carneyWEF2026}.
+Pour l’entreprise européenne, la traduction est directe : les architectures de dépendance doivent être pensées en cohérence avec des blocs, des régimes de sanctions et des standards en compétition.
+
+
+\subsection{Réalité opérationnelle : deals, tarifs, extraterritorialité}
+Pour l’entreprise, la souveraineté apparaît sous forme de \textbf{décisions imposées} : hausse unilatérale de prix, restrictions d’export, changement de standard, obligation de localisation de données, exigences de contrôle d’accès, etc.
+Dans notre fil rouge, un fournisseur US utilise son pouvoir de marché ; un choc tarifaire (ex. +100\%) et/ou contractuel reconfigure le P\&L. Le sujet n’est pas \emph{si} cela peut arriver, mais \emph{comment} l’entreprise arbitre le coût d’une mitigation aujourd’hui contre le coût d’une dépendance demain.
+
+\section{Optionalité stratégique : ce que c’est, et ce que ce n’est pas}
+
+\subsection{Définition opératoire}
+Nous appelons \textbf{optionalité stratégique} la valeur de disposer de choix futurs activables, même si leur activation n’est pas certaine.
+Ce n’est pas une posture ; c’est un portefeuille d’options concrètes : qualifier un fournisseur alternatif, rendre une architecture portable, négocier des clauses de sortie, maintenir une capacité de double-run, etc.
+
+\subsection{Fondations scientifiques}
+Deux fondations se combinent :
+\begin{itemize}
+\item \textbf{Options réelles} : un investissement sous incertitude porte une valeur de flexibilité (attente, expansion, abandon, switching) \citep{dixitpindyck1994}.
+\item \textbf{Décision séquentielle} : la valeur d’une action aujourd’hui dépend des actions disponibles demain (principe d’optimalité de Bellman) \citep{bellman1957}.
+\end{itemize}
+
+\subsection{Rendre l’optionalité « CFO-compatible » : Capex, Opex, coût d’exercice \(E(t)\)}
+L’optionalité doit être budgétable :
+\begin{itemize}
+\item \textbf{Capex} (migration industrielle, re-platforming, qualification, outillage).
+\item \textbf{Opex récurrent} (multi-sourcing, run parallèle, assurance, redondance).
+\item \textbf{Coût d’exercice \(E(t)\)} : le coût réel d’activer l’option dépend du temps (fenêtres contractuelles, capacité des équipes, contraintes d’approvisionnement). Il est souvent \emph{variable} et parfois \emph{discontinu}.
+\item \textbf{Contrainte temporelle} : si une sortie opérationnelle n’est possible qu’en 3 ans (contrat ou inertie industrielle), la politique optimale doit couvrir la phase de verrouillage et la phase de sortie.
+\end{itemize}
+
+\section{Le cadre quantitatif : DP + CVaR + Wasserstein (en clair, puis en équations)}
+
+\subsection{Intuition (niveau CSO/CFO)}
+On modélise la stratégie comme une \textbf{suite de choix} sur un horizon fini (périodes), face à une Nature qui fait évoluer le régime (tarifs, sanctions, macro, réglementation). On veut :
+\begin{itemize}
+\item éviter les décisions myopes (qui optimisent le court terme mais enferment),
+\item piloter les mauvais cas (pertes extrêmes),
+\item être robuste au fait que les probabilités sont mal connues et changent.
+\end{itemize}
+
+\subsection{Formulation minimale}
+Soit \(s_t\) un état (régime, progression de sortie, flags d’investissement/hedge/exit, etc.), \(a_t\) une action, \(\xi\) un aléa (régime futur).
+\[
+V_t(s) = \min_{a \in \mathcal{A}(s)} \ \rho_t\Big( L(s,a,\xi_{t+1}) + \beta V_{t+1}(s') \Big),
+\]
+où \(L\) est le coût/« loss », \(\beta\) une actualisation, et \(\rho_t\) un opérateur de risque. Ici :
+\[
+\rho_t(\cdot)=\sup_{\mathbb{P} \in \mathcal{B}_W(\mathbb{P}_0,\varepsilon(t))}\mathrm{CVaR}_\alpha^{\mathbb{P}}(\cdot),
+\]
+c’est-à-dire : CVaR au niveau \(\alpha\), \emph{au pire} sur un ensemble de distributions proches de \(\mathbb{P}_0\) selon une boule de Wasserstein de rayon \(\varepsilon(t)\) \citep{rockafellarryasev2000,esfahani-kuhn2018}.
+
+\subsection{\(\varepsilon(t)\) : interprétation « prime de souveraineté »}
+Le paramètre \(\varepsilon(t)\) pilote l’aversion à l’ambiguïté : plus \(\varepsilon(t)\) est grand, plus la politique devient prudente face à l’incertitude de modèle. Dans un langage exécutif, \(\varepsilon(t)\) agit comme une \textbf{prime de souveraineté} : le prix accepté pour se protéger contre des trajectoires plausibles non anticipées.
+
+\section{Du cas unique au portefeuille (N dépendances, K parties, horizon fini)}
+
+\subsection{Portefeuille de dépendances}
+Une entreprise ne gère pas une dépendance unique ; elle gère un \textbf{portefeuille} (IT, composants, données, paiements, juridictions, talents). Le portefeuille introduit :
+corrélations, contraintes de capacité (cash, équipes), ordonnancement, et arbitrage multi-critères.
+
+\subsection{Jeu à K parties et Nature}
+On peut généraliser à \(K\) parties : entreprise, fournisseurs dominants, régulateurs, concurrents, coalitions, et Nature.
+L’intérêt opérationnel n’est pas de « résoudre » un jeu théorique abstrait, mais de formaliser les espaces d’actions, les asymétries, et les contraintes de temps — pour produire des politiques et des triggers gouvernables.
+
+\subsection{Scalabilité : mean-field}
+Quand \(N\) devient grand, on passe d’un suivi « cas par cas » à une approche par \textbf{distribution d’états} (mean-field) : on suit une mesure \(\mu_t\) qui agrège l’exposition, et on fait dépendre la décision d’une entreprise des propriétés globales du portefeuille (congestion, effets de réseau, rareté de capacités).
+C’est une voie réaliste pour industrialiser le modèle \citep{carmonaDelarue2018}.
+
+\section{Gouvernance : rendre le quant actionnable (et audit-able)}
+
+\subsection{Le principe : une discipline, un système}
+Le modèle vaut s’il est intégré à un système de gouvernance : registre, indicateurs, triggers, décisions, audit trail.
+C’est exactement l’orientation décrite dans la documentation de framework et la roadmap d’implémentation (Operating System) \citep{internalFramework,internalRoadmap}.
+
+\subsection{Operating Model (proposition)}
+\textbf{Board / Comité Exécutif} : fixe l’appétence au risque souverain, valide la prime de souveraineté (Capex/Opex), arbitre les transformations irréversibles.\\
+\textbf{Comité Stratégie (CSO/CFO/COO)} : pilote le portefeuille, valide les règles de triggers, suit les frontières Pareto (performance vs résilience vs optionalité).\\
+\textbf{Opérations (BU/IT/Achats/Risk)} : collecte des métriques, exécute les plans, remonte signaux, maintient le registre, documente les décisions.
+
+\subsection{Triggers (exemples) et cadence}
+Exemples de triggers : variation significative de \(\varepsilon(t)\), bascule de politique optimale, dégradation de la valeur \(V_0\) au-delà d’un seuil, rupture d’hypothèses (capacité fournisseur, délais, contraintes réglementaires).
+La cadence doit être adaptée au cycle : \emph{mensuel} en normal, \emph{hebdomadaire} en stress, \emph{événementiel} en crise.
+
+\section{Macro \& micro : articulation avec MIRAGE (et pourquoi c’est utile)}
+
+Les modèles CGE (commerce) apportent une capacité de scénarisation macro (tarifs, réallocation, termes de l’échange).
+MIRAGE, développé par le CEPII depuis 2001, est explicitement positionné pour l’analyse de politiques commerciales \citep{mirageSite,mirageJRC}.
+L’articulation recommandée : \textbf{macro pour scénariser}, \textbf{micro pour décider}, \textbf{gouvernance pour exécuter}.
+
+\section{Limites et exigences de crédibilité}
+
+Ce cadre ne prétend pas prédire la géopolitique. Il structure la décision sous incertitude, explicite les arbitrages, et rend le pilotage audit-able.
+La crédibilité vient de : (i) calibrations conservatrices, (ii) backtests sur événements historiques, (iii) gouvernance de modèle (versioning, revue, traçabilité), (iv) transparence sur les hypothèses.
+
+\appendix
+\section{Annexe A — CVaR (rappel en une ligne)}
+\(
+\mathrm{CVaR}_\alpha(X)=\min_{\eta}\left[\eta+\frac{1}{1-\alpha}\mathbb{E}(X-\eta)_+\right]
+\) \citep{rockafellarryasev2000}.
+
+
+\bibliographystyle{plainnat}
+\bibliography{refs_v6}
+\end{document}

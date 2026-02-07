@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{amsmath,amssymb}
+\usepackage{csquotes}
+
+\geometry{margin=2.5cm}
+\onehalfspacing
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+
+\title{
+\textbf{Modéliser la Souveraineté dans la Stratégie d’Entreprise}\\
+\large Livre Blanc Stratégique
+}
+
+\author{Briefing Expert Indépendant}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Résumé Exécutif}
+
+La souveraineté économique et technologique constitue aujourd’hui une variable structurante de la stratégie d’entreprise. Les transformations géopolitiques récentes ont profondément modifié l’équilibre entre efficacité économique, sécurité des chaînes de valeur et autonomie stratégique.
+
+Dans ce contexte, les approches traditionnelles de planification stratégique apparaissent insuffisantes pour traiter des environnements caractérisés par l’incertitude structurelle, l’instrumentalisation du commerce et l’extraterritorialité réglementaire.
+
+Ce document propose un cadre analytique permettant d’intégrer la souveraineté dans la stratégie d’entreprise à travers une modélisation dynamique du risque fondée sur la programmation dynamique, la mesure de risque extrême CVaR et l’optimisation robuste distributionnelle.
+
+\section{La Souveraineté comme Variable Stratégique}
+
+La souveraineté économique, dans sa déclinaison contemporaine, peut être définie comme la capacité d’une organisation à maintenir son autonomie décisionnelle face aux contraintes imposées par des acteurs externes disposant d’un pouvoir économique, réglementaire ou technologique.
+
+Le rapport Draghi sur la compétitivité européenne souligne que la réduction des dépendances critiques constitue une condition de la résilience économique du continent. Il insiste sur le fait que l’indépendance stratégique implique un coût d’assurance économique, assumé afin de réduire l’exposition à des chocs systémiques.
+
+Le rapport Letta sur l’avenir du marché unique introduit une dimension politique explicite dans l’organisation économique européenne. Il souligne que le marché unique ne peut plus être conçu uniquement comme un mécanisme d’allocation efficace des ressources, mais comme un instrument de puissance stratégique.
+
+Dans son intervention au Forum Économique Mondial, Mark Carney souligne l’émergence d’un système international caractérisé par la rivalité entre grandes puissances et le rôle central des puissances intermédiaires dans la stabilisation des flux économiques et financiers mondiaux.
+
+Ces évolutions transforment la souveraineté en contrainte opérationnelle directe pour les entreprises multinationales.
+
+\section{Fragmentation du Système Économique International}
+
+Le système économique mondial entre dans une phase de fragmentation caractérisée par plusieurs dynamiques convergentes.
+
+Premièrement, l’intensification des tensions commerciales et tarifaires modifie les structures de coûts et la stabilité des chaînes d’approvisionnement.
+
+Deuxièmement, l’extraterritorialité réglementaire étend le champ d’application des normes juridiques au-delà des frontières nationales, modifiant profondément les architectures de conformité des entreprises.
+
+Troisièmement, la montée des politiques industrielles souverainistes modifie la concurrence sectorielle en introduisant des distorsions structurelles entre zones économiques.
+
+Enfin, les tensions macro-financières, notamment autour des trajectoires d’endettement public et des divergences de politiques monétaires, renforcent la volatilité des marchés de capitaux.
+
+Dans ce contexte, la dépendance stratégique devient une source majeure de vulnérabilité opérationnelle et financière.
+
+\section{Limites des Méthodes Stratégiques Traditionnelles}
+
+Les approches stratégiques classiques reposent principalement sur la planification par scénarios, l’élaboration de plans de contingence et le pilotage par indicateurs de performance.
+
+Ces méthodes présentent plusieurs limites structurelles.
+
+La planification par scénarios suppose implicitement une stabilité probabiliste du système économique. Or les transformations géopolitiques actuelles introduisent une incertitude radicale concernant la distribution des événements futurs.
+
+Les plans de contingence sont généralement conçus pour répondre à des chocs isolés et non à des transformations systémiques multi-périodes.
+
+Les indicateurs financiers traditionnels privilégient l’optimisation de l’efficacité économique et tendent à sous-évaluer le coût potentiel des dépendances stratégiques.
+
+Il en résulte un risque d’arbitrage biaisé entre performance de court terme et résilience structurelle.
+
+\section{Cadre Quantitatif de Modélisation}
+
+\subsection{Programmation Dynamique}
+
+La programmation dynamique permet de modéliser les décisions stratégiques comme un processus séquentiel dans lequel les choix présents influencent les options futures.
+
+La fonction de valeur s’écrit :
+
+\[
+V_t(s) = \min_{a} \mathrm{CVaR}_\alpha \left( C(s,a) + V_{t+1}(s') \right)
+\]
+
+où l’état $s$ représente la configuration stratégique de l’entreprise et l’action $a$ correspond aux décisions d’allocation de ressources.
+
+Cette approche permet d’intégrer explicitement la valeur de l’optionalité stratégique.
+
+\subsection{Mesure de Risque CVaR}
+
+La Conditional Value-at-Risk permet de mesurer la perte moyenne conditionnelle dans la queue de distribution des scénarios défavorables.
+
+Contrairement aux mesures de variance, la CVaR capture explicitement les pertes extrêmes susceptibles de compromettre la viabilité stratégique de l’entreprise.
+
+\subsection{Optimisation Robuste Distributionnelle}
+
+L’optimisation robuste distributionnelle introduit une incertitude sur les probabilités de scénarios. L’utilisation de métriques de Wasserstein permet de définir un ensemble de distributions plausibles autour d’un modèle de référence.
+
+Cette approche protège les décisions stratégiques contre les erreurs de modélisation probabiliste.
+
+\section{La Prime de Souveraineté}
+
+L’intégration de la souveraineté dans la stratégie peut être interprétée comme l’introduction d’une prime d’assurance économique.
+
+Cette prime correspond au coût associé aux investissements de diversification, de redondance opérationnelle et d’indépendance technologique.
+
+La modélisation quantitative permet d’estimer le niveau optimal de cette prime en fonction du profil de risque stratégique de l’entreprise.
+
+\section{Implications Stratégiques}
+
+L’approche proposée permet aux entreprises :
+
+d’évaluer le coût réel d’exercice d’options stratégiques telles que le retrait de marchés ou la reconfiguration de chaînes d’approvisionnement ;
+
+de calibrer les budgets de mitigation des risques géopolitiques ;
+
+d’identifier les déclencheurs stratégiques justifiant l’accélération ou le ralentissement d’investissements majeurs.
+
+\section{Conclusion}
+
+La souveraineté devient une contrainte structurelle de la stratégie d’entreprise dans un système économique fragmenté.
+
+Son intégration nécessite des outils analytiques capables de gérer simultanément l’incertitude géopolitique, réglementaire et macro-financière.
+
+La modélisation dynamique du risque offre un cadre robuste permettant d’articuler performance économique et résilience stratégique.
+
+\section*{Bibliographie}
+
+Bellman, R. (1957). Dynamic Programming. Princeton University Press.
+
+Rockafellar, R. \& Uryasev, S. (2000). Optimization of Conditional Value-at-Risk. Journal of Risk.
+
+Pflug, G. \& Wozabal, D. (2007). Ambiguity in Portfolio Selection. Quantitative Finance.
+
+Draghi, M. (2024). Rapport sur la Compétitivité Européenne.
+
+Letta, E. (2024). Much More Than a Market.
+
+Carney, M. (2026). World Economic Forum Address.
+
+Rodrik, D. (2023). The New Geopolitics of Trade.
+
+\end{document}
