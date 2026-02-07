@@ -190,33 +190,12 @@ Strategic dependencies exist within a hierarchy of games:
 
 ```mermaid
 flowchart TB
-    subgraph L3["LEVEL 3: GEOPOLITICAL GAME"]
-        L3P["Players: Nation-states"]
-        L3A["Actions: Tariffs, sanctions, regulations"]
-        L3R["Firm's role: Price taker"]
-    end
+    L3["<b>LEVEL 3: GEOPOLITICAL</b><br/>Nation-states · Tariffs/sanctions<br/><i>Firm = price taker</i>"]
+    L2["<b>LEVEL 2: MEAN-FIELD</b><br/>N firms · Migration policies<br/><i>Firm = marginal player</i>"]
+    L1["<b>LEVEL 1: BILATERAL</b><br/>Firm vs counterparty<br/><i>Firm = strategic player</i>"]
+    L0["<b>LEVEL 0: EXECUTION</b><br/>Apply policy π*(s)"]
     
-    subgraph L2["LEVEL 2: INDUSTRY MEAN-FIELD GAME"]
-        L2P["Players: N firms (large)"]
-        L2A["Actions: Migration policies"]
-        L2C["Coupling: Aggregate μ affects costs"]
-        L2R["Firm's role: Mean-field player"]
-    end
-    
-    subgraph L1["LEVEL 1: BILATERAL STRATEGIC GAME"]
-        L1P["Players: Firm vs counterparty"]
-        L1A["Actions: Contract, investment, exit"]
-        L1R["Firm's role: Strategic player"]
-    end
-    
-    subgraph L0["LEVEL 0: OPERATIONAL EXECUTION"]
-        L0P["Given: Policy π* from Levels 1-2"]
-        L0R["Firm's role: Execute π*(s)"]
-    end
-    
-    L3 -->|"shapes environment"| L2
-    L2 -->|"industry dynamics"| L1
-    L1 -->|"optimal policy"| L0
+    L3 --> L2 --> L1 --> L0
 ```
 
 ### 3.2 Level 3: Geopolitical Regime
@@ -460,13 +439,7 @@ $$\mathrm{Confidence} = f(\mathrm{dominance}, \mathrm{margin}, \mathrm{sensitivi
 
 ```mermaid
 flowchart LR
-    subgraph MONITOR["STRATEGIC MONITORING SYSTEM"]
-        direction LR
-        O["OBSERVE<br/>Indicators"] --> C["COMPUTE<br/>Parameters"]
-        C --> CP["COMPARE<br/>Thresholds"]
-        CP --> D["DECIDE<br/>Actions"]
-        D --> E["EXECUTE<br/>Operations"]
-    end
+    O[OBSERVE] --> C[COMPUTE] --> CP[COMPARE] --> D[DECIDE] --> E[EXECUTE]
 ```
 
 ### 6.2 Observable Indicators
@@ -557,28 +530,12 @@ $$p_{01}(t) = p_{01}^{\text{base}} \cdot \left(1 + \beta_{\text{USTR}} \cdot \ma
 
 ```mermaid
 flowchart TB
-    subgraph BOARD["LEVEL 1: BOARD"]
-        B1["Approves: Portfolio strategy, major investments"]
-        B2["Reviews: Quarterly sovereignty dashboard"]
-        B3["Escalation: Existential threats, coalitions"]
-    end
+    BOARD["<b>BOARD</b><br/>Portfolio strategy · Major investments"]
+    COMMITTEE["<b>STRATEGY COMMITTEE</b><br/>Options · Parameters · Calibration"]
+    OPS["<b>OPERATIONAL</b><br/>Execute · Monitor · Escalate"]
     
-    subgraph COMMITTEE["LEVEL 2: STRATEGY COMMITTEE"]
-        C1["Owns: Dependency register, criticality"]
-        C2["Approves: Option execution, parameters"]
-        C3["Updates: Calibration, scenarios"]
-    end
-    
-    subgraph OPS["LEVEL 3: OPERATIONAL"]
-        O1["Execute: Approved options"]
-        O2["Monitor: Triggers, early warning"]
-        O3["Escalate: Threshold breaches"]
-    end
-    
-    OPS -->|"escalate"| COMMITTEE
-    COMMITTEE -->|"escalate"| BOARD
-    BOARD -->|"approve"| COMMITTEE
-    COMMITTEE -->|"delegate"| OPS
+    BOARD <-->|approve/escalate| COMMITTEE
+    COMMITTEE <-->|delegate/escalate| OPS
 ```
 
 ### 7.2 RACI Matrix
@@ -596,16 +553,11 @@ flowchart TB
 
 ```mermaid
 flowchart TD
-    TRIGGER["TRIGGER BREACH DETECTED"] --> SEVERITY{"Severity Level?"}
-    
-    SEVERITY -->|LOW| OPS["Ops Review"]
-    SEVERITY -->|HIGH| COMMITTEE["Committee Briefing"]
-    
-    OPS --> LOG["Log & Continue"]
-    COMMITTEE --> DECISION{"Decision Required?"}
-    
-    DECISION -->|No| LOG
-    DECISION -->|CRITICAL| BOARD["Board Alert"]
+    T[TRIGGER] --> S{Severity?}
+    S -->|Low| O[Ops Review] --> L[Log]
+    S -->|High| C[Committee] --> D{Critical?}
+    D -->|No| L
+    D -->|Yes| B[Board Alert]
 ```
 
 ### 7.4 Audit Trail Requirements
