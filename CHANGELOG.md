@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-02-07
+
+### Added
+
+**Intern Tutorial Syllabus** (`docs/tuto/`):
+- 9-step progressive tutorial (approx. 3,000 lines) to onboard newcomers to the framework
+- `00_welcome.md` -- Project overview, repo orientation, prerequisites, learning roadmap
+- `01_business_context.md` -- Real-world sovereignty problem, why NPV fails, three layers of uncertainty, policy vs. decision
+- `02_game_theory_primer.md` -- History (von Neumann, Nash, Shapley), minimax with worked 2x2 example, sequential games, Nature as player
+- `03_dynamic_programming.md` -- Bellman's principle, backward induction, hand-solved 3-period DP example, discount factor / WACC
+- `04_risk_and_ambiguity.md` -- VaR vs. CVaR with numerical examples, coherence, Wasserstein distance (optimal transport analogy), DRO, time-varying epsilon
+- `05_the_model.md` -- Full 64-state space, encoding/decoding, 5 actions, transitions, loss function, progressive hedge effectiveness, complete Bellman-Wasserstein equation
+- `06_code_walkthrough.md` -- Notebook section map, key classes and functions annotated, solver loop, Wasserstein LP inner problem, dependencies
+- `07_results_and_interpretation.md` -- Four scenarios, policy reading, sovereignty premium computation, sensitivity analysis, CFO interpretation framework
+- `08_extensions_and_future.md` -- N-player extensions, mean-field games, sovereignty portfolio, 18-month production roadmap, business value, open problems
+- Each step includes a validation quiz (5-8 questions) with detailed answers and explanations
+
 ## [1.0.0] - 2026-02-04
 
 ### Added
