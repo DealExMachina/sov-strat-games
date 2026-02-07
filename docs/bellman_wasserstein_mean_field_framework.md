@@ -257,9 +257,9 @@ For specific high-value counterparties (e.g., key supplier, major regulator), mo
 
 ### 3.5 Level 0: Execution
 
-Given the solved policy $\pi^*$ from upper levels:
+Given the solved policy $\pi^{*}$ from upper levels:
 
-$$a_t = \pi^*(s_t)$$
+$$a_t = \pi^{*}(s_t)$$
 
 This is deterministic application of the optimal policy.
 
@@ -306,7 +306,7 @@ Given mean-field $\mu$, each firm solves:
 
 $$V_t(s; \mu) = \min_{a \in \mathcal{A}} \sup_{p \in \mathcal{P}_{\varepsilon(t,\mu)}(p_0)} \text{CVaR}_\alpha^p\left[\gamma_t \ell(s,a;\mu) + V_{t+1}(S'; \mu')\right]$$
 
-This yields optimal policy $\pi^*(\cdot; \mu)$.
+This yields optimal policy $\pi^{*}(\cdot; \mu)$.
 
 ### 4.5 Population Dynamics
 
@@ -318,13 +318,13 @@ This is deterministic evolution of the distribution.
 
 ### 4.6 Mean-Field Equilibrium (MFE)
 
-**Definition**: A mean-field equilibrium is a pair $(\pi^*, \mu^*)$ such that:
+**Definition**: A mean-field equilibrium is a pair $(\pi^{*}, \mu^{*})$ such that:
 
-1. **Optimality**: $\pi^*$ solves the individual firm's problem given $\mu^*$
-2. **Consistency**: $\mu^*$ is the distribution induced by all firms following $\pi^*$
+1. **Optimality**: $\pi^{*}$ solves the individual firm's problem given $\mu^{*}$
+2. **Consistency**: $\mu^{*}$ is the distribution induced by all firms following $\pi^{*}$
 
 **Fixed-point characterization**:
-$$\mu^* = \Phi(\pi^*(\cdot; \mu^*))$$
+$$\mu^{*} = \Phi(\pi^{*}(\cdot; \mu^{*}))$$
 
 Where $\Phi$ is the forward operator.
 
@@ -435,9 +435,9 @@ Each cell contains the **worst-case CVaR cost** for that action-criterion pair.
 
 ### 5.5 Switching Conditions
 
-For each non-recommended action $a' \neq a^*$, compute:
+For each non-recommended action $a' \neq a^{*}$, compute:
 
-$$\Delta_{\theta}(a^* \to a') = \{\theta : a' \text{ becomes optimal under parameter } \theta\}$$
+$$\Delta_{\theta}(a^{*} \to a') = \lbrace\theta : a' \text{ becomes optimal under parameter } \theta\rbrace$$
 
 **Output format**:
 - "Switch to HEDGE if $\varepsilon > 0.25$ or $p_{01} > 0.25$"
@@ -511,7 +511,7 @@ $$p_{01}(t) = p_{01}^{\text{base}} \cdot \left(1 + \beta_{\text{USTR}} \cdot \ma
 **Model output triggers** (governance escalation):
 - $\Delta V_0 > 15\%$ deterioration → Strategy Committee
 - $\Delta V_0 > 35\%$ deterioration → Board
-- Policy change ($a^*$ different) → Strategy Committee
+- Policy change ($a^{*}$ different) → Strategy Committee
 
 ### 6.5 Update Cadence
 
