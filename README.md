@@ -6,9 +6,14 @@ This repository implements a game-theoretic framework for supplier dependency an
 
 ## Documentation
 
+### Core Materials
 - **Main Notebook**: [`sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb`](sovereignty_dp_cvar_wasserstein_ultraCFO.ipynb) - CFO-friendly walkthrough with executive summary
 - **Game Theory Tutorial (EN)**: [`docs/game_theory_tutorial.md`](docs/game_theory_tutorial.md) - Comprehensive guide on game theory, minimax, Bellman equations, and n-player extensions
-- **Tutoriel Théorie des Jeux (FR)**: [`docs/game_theory_tutorial_fr.md`](docs/game_theory_tutorial_fr.md) 🇫🇷 - Version française complète
+- **Tutoriel Theorie des Jeux (FR)**: [`docs/game_theory_tutorial_fr.md`](docs/game_theory_tutorial_fr.md) - Version francaise complete
+
+### Strategic Framework (v2.0)
+- **Unified Framework**: [`docs/bellman_wasserstein_mean_field_framework.md`](docs/bellman_wasserstein_mean_field_framework.md) - Comprehensive presentation of the Bellman-Wasserstein Mean-Field framework for strategic autonomy, including multi-criterion analysis, hierarchical game structure, and governance integration
+- **Implementation Roadmap**: [`docs/implementation_roadmap.md`](docs/implementation_roadmap.md) - Phased roadmap (18-24 months) to transform the toy model into a production-grade Strategic Autonomy Operating System
 
 ## Why Games?
 
