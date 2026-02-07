@@ -441,7 +441,7 @@ Confidence in recommendation based on:
 2. **Margin**: How far from switching thresholds?
 3. **Sensitivity**: How stable under parameter perturbation?
 
-$$\text{Confidence} = f(\text{criteria\_dominance}, \text{threshold\_margin}, \text{sensitivity})$$
+$$\mathrm{Confidence} = f(\mathrm{dominance}, \mathrm{margin}, \mathrm{sensitivity})$$
 
 ---
 
