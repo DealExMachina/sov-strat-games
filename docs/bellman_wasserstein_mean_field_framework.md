@@ -658,7 +658,7 @@ Where $n_{\text{LP}}$ is the time to solve the Wasserstein DRO LP (~10-50ms).
 
 The robust CVaR under Wasserstein ambiguity is solved via LP duality:
 
-$$\sup_{p : W_C(p, p_0) \leq \varepsilon} \text{CVaR}_\alpha^p(L) = \min_{\eta, \lambda \geq 0, u} \Big\{\eta + \lambda\varepsilon + p_0^\top u\Big\}$$
+$$\sup_{p : W_C(p, p_0) \leq \varepsilon} \text{CVaR}_\alpha^p(L) = \min_{\eta, \lambda \geq 0, u} \bigl\lbrace \eta + \lambda\varepsilon + p_0^\top u \bigr\rbrace$$
 
 Subject to:
 $$u_i + \lambda C_{ij} \geq \frac{1}{1-\alpha}(L_j - \eta)^+ \quad \forall i, j$$
@@ -828,7 +828,7 @@ Where $b_t$ is belief distribution over states.
 
 Hamilton-Jacobi-Bellman equation:
 
-$$0 = \min_a \Big\{\ell(s,a) + \mathcal{L}^a V(s) + \sup_{p \in \mathcal{P}_\varepsilon} \mathbb{E}^p[\text{jump cost}]\Big\}$$
+$$0 = \min_a \bigl\lbrace \ell(s,a) + \mathcal{L}^a V(s) + \sup_{p \in \mathcal{P}_\varepsilon} \mathbb{E}^p[\text{jump cost}] \bigr\rbrace$$
 
 Requires viscosity solution methods.
 
