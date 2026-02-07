@@ -498,28 +498,75 @@ $$p_{01}(t) = p_{01}^{\text{base}} \cdot \left(1 + \beta_{\text{USTR}} \cdot \ma
 
 ### 6.6 Dashboard Specification
 
-**Real-time display**:
+```mermaid
+flowchart TB
+    subgraph HEADER["STRATEGIC MONITORING DASHBOARD"]
+        direction LR
+        DATE[Last Update: 2026-02-05 14:32 UTC]
+        STATUS[System Status: ACTIVE]
+    end
+    
+    subgraph MAIN["Dashboard Panels"]
+        direction LR
+        
+        subgraph IND["MARKET INDICATORS"]
+            I1["EPU Index<br/>142.3 ▲"]
+            I2["VIX<br/>18.2 ―"]
+            I3["Industry μ<br/>0.30 ▲"]
+        end
+        
+        subgraph MODEL["MODEL STATE"]
+            M1["Ambiguity ε(t)<br/>0.156 ▲"]
+            M2["Transition p₀₁<br/>0.150 ―"]
+            M3["Value V₀<br/>-49.2 ▼"]
+        end
+        
+        subgraph ACTION["RECOMMENDED ACTION"]
+            A1["WAIT"]
+        end
+    end
+    
+    subgraph TRIGGERS["TRIGGER STATUS"]
+        direction LR
+        T1["🔴 Recompute: TRIGGERED<br/>μ changed +0.05"]
+        T2["🟢 Escalate: OK<br/>Within thresholds"]
+    end
+    
+    HEADER --> MAIN
+    MAIN --> TRIGGERS
 ```
-┌────────────────────────────────────────────────────────────────┐
-│ STRATEGIC MONITORING DASHBOARD                    [2026-02-05] │
-├────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│ INDICATORS              │ MODEL STATE                          │
-│ EPU: 142.3 [▲]         │ ε(t): 0.156 [▲]                      │
-│ VIX: 18.2  [─]         │ p01:  0.150 [─]                      │
-│ μ:   0.30  [▲]         │ V0:  -49.2  [▼]                      │
-│                         │ π*:  WAIT   [─]                      │
-│                                                                 │
-│ TRIGGER STATUS                                                 │
-│ [●] Recompute: TRIGGERED (μ +0.05)                            │
-│ [○] Escalate:  NOT TRIGGERED                                  │
-│                                                                 │
-│ RECOMMENDED ACTION: WAIT                                       │
-│ Switch conditions:                                             │
-│   → HEDGE if ε > 0.25                                         │
-│   → INVEST if μ > 0.50                                        │
-│                                                                 │
-└────────────────────────────────────────────────────────────────┘
+
+**Key Performance Indicators**
+
+| Indicator | Current | 7-day Δ | Threshold | Status |
+|-----------|---------|---------|-----------|--------|
+| EPU Index | 142.3 | +12.4 | >150 | Watching |
+| VIX | 18.2 | -0.3 | >25 | Normal |
+| Industry Position μ | 0.30 | +0.05 | >0.40 | Elevated |
+| Ambiguity ε(t) | 0.156 | +0.02 | >0.20 | Normal |
+| Robust Value V₀ | -49.2 | -3.1 | <-60 | Normal |
+
+**Recommended Action: WAIT**
+
+| Switch To | Condition | Current Gap | Confidence |
+|-----------|-----------|-------------|------------|
+| HEDGE | ε > 0.25 | 0.094 below | 87% |
+| INVEST | μ > 0.50 | 0.20 below | 92% |
+| ACCELERATE | Tariff > 2 periods | Not triggered | 95% |
+
+**Alert History (Last 30 Days)**
+
+```mermaid
+gantt
+    title Trigger Events Timeline
+    dateFormat  YYYY-MM-DD
+    section Recompute
+    μ shift +0.05       :active, r1, 2026-02-05, 1d
+    EPU spike           :done, r2, 2026-01-28, 1d
+    section Escalate
+    V₀ warning          :crit, e1, 2026-01-15, 1d
+    section Review
+    Quarterly review    :milestone, m1, 2026-01-01, 0d
 ```
 
 ---
