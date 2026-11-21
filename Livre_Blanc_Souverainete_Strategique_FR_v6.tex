@@ -157,11 +157,98 @@ C’est exactement l’orientation décrite dans la documentation de framework e
 Exemples de triggers : variation significative de \(\varepsilon(t)\), bascule de politique optimale, dégradation de la valeur \(V_0\) au-delà d’un seuil, rupture d’hypothèses (capacité fournisseur, délais, contraintes réglementaires).
 La cadence doit être adaptée au cycle : \emph{mensuel} en normal, \emph{hebdomadaire} en stress, \emph{événementiel} en crise.
 
-\section{Macro \& micro : articulation avec MIRAGE (et pourquoi c’est utile)}
+\section{Macro \& micro : comment un modèle macroéconomique actualise le plan et les options}
 
-Les modèles CGE (commerce) apportent une capacité de scénarisation macro (tarifs, réallocation, termes de l’échange).
-MIRAGE, développé par le CEPII depuis 2001, est explicitement positionné pour l’analyse de politiques commerciales \citep{mirageSite,mirageJRC}.
-L’articulation recommandée : \textbf{macro pour scénariser}, \textbf{micro pour décider}, \textbf{gouvernance pour exécuter}.
+\subsection{Le problème : d’où viennent les paramètres du modèle micro ?}
+Le cadre Bellman-CVaR-Wasserstein (section~3) prend en entrée des paramètres calibrés :
+probabilités de transition entre régimes (\(p_{01}, p_{10}\)),
+rayon d’ambiguïté \(\varepsilon(t)\),
+niveaux de coûts (tarifs, pénalités, coûts de migration).
+Ces paramètres ne sont pas des constantes : ils dépendent de l’environnement macro.
+Un durcissement tarifaire US-UE, une nouvelle vague de sanctions, un accord commercial régional modifient directement les probabilités de choc et les coûts d’exposition.
+
+La question opérationnelle est donc : \emph{comment traduire un scénario macro en mise à jour des paramètres micro, de façon systématique et auditable ?}
+
+\subsection{Architecture en trois étages}
+L’articulation repose sur trois couches distinctes :
+
+\begin{enumerate}
+\item \textbf{Scénarisation macro (CGE / MIRAGE).}
+Un modèle d’équilibre général calculable (CGE) comme MIRAGE \citep{mirageSite,mirageDoc2026,mirageJRC} simule l’effet de chocs de politique commerciale (hausse de tarifs, quotas, restrictions d’export, réallocation de chaînes de valeur) sur les prix relatifs, les flux commerciaux et les termes de l’échange, par secteur et par zone géographique.
+Le CEPII positionne explicitement MIRAGE pour l’analyse de politiques commerciales ; le JRC l’inclut dans son inventaire de modèles de référence.
+\textbf{Sortie utile} : un jeu de scénarios macro chiffrés (ex. : « tarif US de +25\% sur les composants électroniques européens ; impact sur le prix d’approvisionnement du secteur : +12 à +18\% »).
+
+\item \textbf{Traduction en paramètres micro (mapping).}
+Les sorties du CGE alimentent une fonction de mapping qui convertit les grandeurs macro en paramètres du modèle Bellman :
+\begin{itemize}
+\item \textbf{Probabilités de transition} \((p_{01}, p_{10})\) : un scénario macro où la probabilité d’un choc tarifaire passe de 15\% à 40\% se traduit par une mise à jour de \(p_{01}\).
+\item \textbf{Rayon d’ambiguïté} \(\varepsilon(t)\) : quand les scénarios macro divergent fortement entre eux (dispersion des estimations), \(\varepsilon(t)\) augmente — le modèle devient plus conservateur, ce qui reflète une incertitude de modèle accrue.
+\item \textbf{Coûts directs} : le surcoût tarifaire estimé par le CGE met à jour \texttt{tariff\_cost} ; un changement de coût de relocalisation (dû à une réallocation sectorielle) met à jour \texttt{capex\_invest}.
+\item \textbf{Contraintes temporelles} : si un scénario macro implique une fenêtre réglementaire (ex. : mise en conformité sous 24 mois), il contraint l’horizon et les phases de sortie du modèle.
+\end{itemize}
+Ce mapping est le pont technique entre les deux mondes. Il doit être documenté, versionné, et auditable.
+
+\item \textbf{Décision micro (Bellman-CVaR-Wasserstein).}
+Le modèle micro recalcule la politique optimale, la prime de souveraineté, et les triggers à chaque mise à jour des paramètres.
+Si la politique optimale change (ex. : passage de « attendre » à « investir »), c’est un signal de gouvernance.
+Si la prime de souveraineté augmente significativement, c’est un signal budgétaire.
+\end{enumerate}
+
+En résumé : \textbf{macro pour scénariser}, \textbf{mapping pour traduire}, \textbf{micro pour décider}, \textbf{gouvernance pour exécuter}.
+
+\subsection{Canaux de transmission : du choc macro à la décision}
+
+Trois canaux principaux relient un événement macro aux paramètres micro :
+
+\medskip
+\noindent\textbf{Canal 1 — Prix et coûts.}
+Un choc tarifaire ou une réallocation sectorielle modifie le coût d’approvisionnement.
+Le CGE produit un \(\Delta\text{prix}\) sectoriel ; le mapping le traduit en variation de \texttt{tariff\_cost} et \texttt{hedged\_tariff\_cost}.
+\emph{Exemple} : MIRAGE estime qu’un tarif US de +25\% sur les semi-conducteurs européens augmente le coût d’approvisionnement de 14\%. Le modèle micro réévalue la valeur de l’option « multi-sourcing asiatique ».
+
+\medskip
+\noindent\textbf{Canal 2 — Probabilités de régime.}
+Les scénarios macro modifient la vraisemblance d’un changement de régime (tarif activé / désactivé, sanctions imposées / levées).
+On calibre \(p_{01}\) et \(p_{10}\) sur la distribution des scénarios CGE, complétée par des indicateurs observables (EPU, VIX, watchlists sanctions).
+\emph{Exemple} : un scénario d’escalade commerciale US-UE fait passer \(p_{01}\) de 0.15 à 0.35 ; le modèle micro recalcule et recommande de lancer la qualification d’un fournisseur alternatif dès \(t=0\).
+
+\medskip
+\noindent\textbf{Canal 3 — Ambiguïté et dispersion.}
+Quand les scénarios macro sont très dispersés (forte incertitude sur la direction de la politique commerciale), le rayon de Wasserstein \(\varepsilon(t)\) augmente.
+Ce n’est pas un paramètre « subjectif » : il reflète la dispersion objective des projections.
+\emph{Exemple} : trois scénarios MIRAGE donnent des impacts sur le secteur allant de +5\% à +30\%. Cette dispersion se traduit par un \(\varepsilon(t)\) élevé ; la politique micro devient plus conservatrice (prime de souveraineté en hausse).
+
+\subsection{Indicateurs observables et cadence de mise à jour}
+
+Le mapping ne dépend pas uniquement des runs CGE (qui sont coûteux et ponctuels). Entre deux scénarisations macro, des indicateurs observables permettent une mise à jour continue :
+
+\begin{itemize}
+\item \textbf{Economic Policy Uncertainty} (EPU, Baker-Bloom-Davis) : proxy de l’incertitude réglementaire et politique. Alimente \(\varepsilon(t)\).
+\item \textbf{VIX} : volatilité implicite des marchés. Signal de stress financier, corrélé aux épisodes de tension géopolitique.
+\item \textbf{Watchlists sanctions} (OFAC, UE) : signal binaire de durcissement réglementaire. Alimente \(p_{01}\).
+\item \textbf{Annonces commerciales} (USTR, Commission européenne) : signal avancé de chocs tarifaires.
+\end{itemize}
+
+La cadence recommandée : recalibration complète (avec run CGE) \emph{semestrielle ou événementielle} ; mise à jour par indicateurs observables \emph{mensuelle} en régime normal, \emph{hebdomadaire} en stress.
+
+\subsection{Illustration : boucle complète sur le fil rouge}
+
+Reprenons le cas d’un fournisseur US critique (section~1.3).
+
+\begin{enumerate}
+\item \textbf{Scénario macro} : le CEPII publie un scénario MIRAGE de tarif US +25\% sur le secteur. Impact estimé : surcoût de 14\% sur l’approvisionnement, réallocation partielle vers l’Asie du Sud-Est.
+\item \textbf{Mapping} : \texttt{tariff\_cost} augmente de 10 à 14 (unités normalisées). \(p_{01}\) passe de 0.15 à 0.30. \(\varepsilon(t)\) passe de 0.1 à 0.25 (dispersion inter-scénarios élevée).
+\item \textbf{Recalcul micro} : la politique optimale bascule de « attendre » à « investir » (lancer la qualification d’un fournisseur alternatif). La prime de souveraineté augmente de 2.1 à 5.8 (unités NPV).
+\item \textbf{Trigger de gouvernance} : bascule de politique \(\Rightarrow\) escalade au Comité Stratégie. Prime de souveraineté \(> 2\times\) le seuil \(\Rightarrow\) information du Board sur le budget d’optionalité.
+\end{enumerate}
+
+\subsection{Pourquoi cette articulation est nécessaire}
+
+Sans le lien macro-micro, le cadre quantitatif tourne en vase clos : les paramètres restent des hypothèses figées, et le modèle perd sa crédibilité face aux décideurs.
+Avec le lien, on obtient trois propriétés essentielles :
+(a) les scénarios sont \emph{fondés} sur des modèles économiques reconnus (MIRAGE, CEPII) plutôt que sur des conjectures internes ;
+(b) les mises à jour sont \emph{traçables} (quel scénario a déclenché quel changement de paramètre, avec quel effet sur la politique) ;
+(c) la gouvernance est \emph{réactive} — un changement de contexte macro se propage en quelques jours jusqu’à une recommandation opérationnelle actualisée.
 
 \section{Limites et exigences de crédibilité}
 
